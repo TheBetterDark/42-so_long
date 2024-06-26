@@ -6,7 +6,7 @@
 #    By: muabdi <muabdi@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/12 23:59:26 by muabdi            #+#    #+#              #
-#    Updated: 2024/05/24 00:52:17 by muabdi           ###   ########.fr        #
+#    Updated: 2024/05/24 01:43:37 by muabdi           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -71,6 +71,9 @@ fclean:
 	@rm -rf $(LOG_DIR)
 
 re: fclean all
+
+lib:
+	git submodule update --recursive --remote
 
 test: all
 	./$(NAME)
