@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: muabdi <muabdi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: muabdi <muabdi@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 23:44:11 by muabdi            #+#    #+#             */
-/*   Updated: 2024/05/23 17:53:04 by muabdi           ###   ########.fr       */
+/*   Updated: 2024/05/27 16:03:43 by muabdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,5 +34,6 @@
 
 # include "utils.h"
 # include "game.h"
+# include "assets.h"
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: muabdi <muabdi@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 17:37:38 by muabdi            #+#    #+#             */
-/*   Updated: 2024/05/25 19:32:10 by muabdi           ###   ########.fr       */
+/*   Updated: 2024/05/28 22:12:23 by muabdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,6 @@
 
 // Macro declarations
 
-# define MOUSE_EVENT 1
-# define KEY_EVENT 0
-
 // Struct declarations
 
 typedef struct s_vector2
@@ -34,11 +31,6 @@ typedef struct s_vector2
 	int				x;
 	int				y;
 }					t_vector2;
-
-typedef struct s_animation
-{
-	t_list			*frames;
-}					t_animation;
 
 typedef struct s_image
 {
@@ -74,10 +66,8 @@ typedef struct s_texture
 
 typedef struct s_event
 {
-	int				event_type; // 0 = Keyboard | 1 = Mouse
 	int				key_code;
-	void			(*f_mouse)(int x, int y);
-	void			(*f_key)(void); // TODO: Make into variadic function
+	void			(*f)(int key_code);
 }					t_event;
 
 typedef struct s_data
@@ -87,10 +77,11 @@ typedef struct s_data
 	int				height;
 	int				width;
 
+	bool			stop_loop;
+
 	t_list			*event_connections;
-	t_list			*animations;
-	t_list			*img_ptrs;
 	t_list			*texture_ptrs;
+	t_list			*img_ptrs;
 }					t_data;
 
 // Function declarations
@@ -98,20 +89,16 @@ typedef struct s_data
 t_data		*open_window(int width, int height, char *title);
 int			close_window(t_data *data);
 
-t_image		*render_background(t_data *data, int colour);
-
 t_image		*create_image(t_data *data, int w, int h);
 void		set_pixel_in_image(t_image *img, int x, int y, int color);
 void		free_images(t_data *data);
 void		*free_image(t_image *img);
 
 t_texture	*create_texture(t_data *data, char *file_name, t_vector2 position);
+void		*free_texture(t_texture *texture);
 void		free_textures(t_data *data);
-void		*free_texture(t_texture *tex);
 
-t_event		*connect_event(int event_type, int key_code, void *f, t_data *data);
-int			on_mouse_event(int key_code, int x, int y, t_data *data);
-int			on_key_event(int key_code, t_data *data);
+t_event		*connect_event(int key_code, void *f, t_data *data);
 void		*free_event(t_event *event);
 void		free_events(t_data *data);
 

@@ -6,7 +6,7 @@
 #    By: muabdi <muabdi@student.42london.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/12 23:59:26 by muabdi            #+#    #+#              #
-#    Updated: 2024/05/25 19:13:18 by muabdi           ###   ########.fr        #
+#    Updated: 2024/05/27 18:25:28 by muabdi           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -89,12 +89,12 @@ libs:
 leaks: all
 	@rm -f $(OUTPUT_LEAKS)
 	@mkdir -p $(LOG_DIR)
-	@valgrind -v --leak-check=full --show-leak-kinds=all --track-origins=yes --log-file=$(OUTPUT_LEAKS) ./$(NAME)
-	@cat $(OUTPUT_LEAKS) | grep -E "HEAP SUMMARY:|LEAK SUMMARY:|in use as exit:|total heap usage:|definitely lost:|indirectly lost:|possibly lost:|still reachable:|suppressed:"
-	@if [ $$? -eq 0 ]; then echo "${GREEN}No memory leaks detected.\n$(NAME) ran successfully.${NC}"; else echo "${RED}Memory leaks detected.\n${YELLOW}Check $(OUTPUT_LEAKS) for more information.${NC}"; fi
-
-test:
-	@echo "${YELLOW}Launching $(NAME)...${NC}"
+	@valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --log-file=$(OUTPUT_LEAKS) ./$(NAME)
+	@cat $(OUTPUT_LEAKS)
+	@echo "${GREEN}$(NAME) ran successfully.${NC}"
+	
+test: all
+	@echo "${YELLOW}Launching $(NAME)...${NC}" 
 	@./$(NAME)
 	@echo "${GREEN}$(NAME) ran successfully.${NC}"
 

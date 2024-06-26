@@ -6,7 +6,7 @@
 /*   By: muabdi <muabdi@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 00:42:12 by muabdi            #+#    #+#             */
-/*   Updated: 2024/05/27 15:47:19 by muabdi           ###   ########.fr       */
+/*   Updated: 2024/05/28 21:49:20 by muabdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ t_image	*create_image(t_data *data, int w, int h)
 		return (NULL);
 	img->img_ptr = mlx_new_image(data->mlx_ptr, w, h);
 	if (!img->img_ptr)
-		return (close_window(data), NULL);
+		return (exit(1), NULL);
 	img->addr = mlx_get_data_addr(img->img_ptr, &img->bpp, &img->line_len,
 			&img->endian);
 	img->height = h;
@@ -51,8 +51,12 @@ void	free_images(t_data *data)
 
 void	*free_image(t_image *img)
 {
-	mlx_destroy_image(img->mlx_ptr, img->img_ptr);
-	free(img);
-	img = NULL;
+	if (img)
+	{
+		if (img->mlx_ptr && img->img_ptr)
+			mlx_destroy_image(img->mlx_ptr, img->img_ptr);
+		free(img);
+		img = NULL;
+	}
 	return (NULL);
 }

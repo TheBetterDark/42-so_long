@@ -6,7 +6,7 @@
 /*   By: muabdi <muabdi@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 21:56:09 by muabdi            #+#    #+#             */
-/*   Updated: 2024/05/27 15:47:26 by muabdi           ###   ########.fr       */
+/*   Updated: 2024/05/28 23:14:14 by muabdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,11 @@ t_texture	*create_texture(t_data *data, char *file_name, t_vector2 position)
 
 	texture = malloc(sizeof(t_texture));
 	if (!texture)
-		return (NULL);
+		return (exit(1), NULL);
 	texture->xpm_ptr = mlx_xpm_file_to_image(data->mlx_ptr, file_name,
 			&texture->width, &texture->height);
 	if (!texture->xpm_ptr)
-		return (close_window(data), NULL);
+		return (exit(1), NULL);
 	texture->addr = mlx_get_data_addr(texture->xpm_ptr, &texture->bpp,
 			&texture->line_len, &texture->endian);
 	texture->mlx_ptr = data->mlx_ptr;
@@ -35,15 +35,24 @@ t_texture	*create_texture(t_data *data, char *file_name, t_vector2 position)
 
 void	free_textures(t_data *data)
 {
-	ft_lstclear(&data->texture_ptrs, (void *)free_texture);
-	data->texture_ptrs = NULL;
+	if (data->texture_ptrs)
+	{
+		ft_lstclear(&data->texture_ptrs, (void *)free_texture);
+		data->texture_ptrs = NULL;
+	}
 }
 
 void	*free_texture(t_texture *texture)
 {
-	if (texture->xpm_ptr)
-		mlx_destroy_image(texture->mlx_ptr, texture->xpm_ptr);
-	free(texture);
-	texture = NULL;
+	if (texture)
+	{
+		if (texture->xpm_ptr)
+		{
+			mlx_destroy_image(texture->mlx_ptr, texture->xpm_ptr);
+			texture->xpm_ptr = NULL;
+		}
+		free(texture);
+		texture = NULL;
+	}
 	return (NULL);
 }
