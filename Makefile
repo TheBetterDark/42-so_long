@@ -73,8 +73,7 @@ fclean:
 re: fclean all
 
 libs:
-	@git submodule init
-	@git submodule update
+	@git submodule update --init --recursive
 
 test: all
 	./$(NAME)
@@ -85,4 +84,4 @@ leaks: all
 	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --log-file=$(OUTPUT_LEAKS) ./$(NAME)
 	@cat $(LOG_DIR)/valgrind.log
 
-.PHONY: all clean fclean re leaks test
+.PHONY: all clean fclean re libs leaks test
