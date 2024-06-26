@@ -6,29 +6,44 @@
 /*   By: muabdi <muabdi@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 00:42:12 by muabdi            #+#    #+#             */
-/*   Updated: 2024/05/28 21:49:20 by muabdi           ###   ########.fr       */
+/*   Updated: 2024/05/29 15:11:12 by muabdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-t_image	*create_image(t_data *data, int w, int h)
+t_image	*create_image(t_data *data, int width, int height)
 {
 	t_image	*img;
 
 	img = malloc(sizeof(t_image));
 	if (!img)
-		return (NULL);
-	img->img_ptr = mlx_new_image(data->mlx_ptr, w, h);
-	if (!img->img_ptr)
 		return (exit(1), NULL);
+	img->mlx_ptr = data->mlx_ptr;
+	img->img_ptr = mlx_new_image(data->mlx_ptr, width, height);
+	if (!img->img_ptr)
+		return (free(img), exit(1), NULL);
 	img->addr = mlx_get_data_addr(img->img_ptr, &img->bpp, &img->line_len,
 			&img->endian);
-	img->height = h;
-	img->width = w;
+	img->width = width;
+	img->height = height;
+	return (img);
+}
+
+t_image	*load_texture(t_data *data, char *file_name, t_vector2 position)
+{
+	t_image	*img;
+
+	img = malloc(sizeof(t_image));
+	if (!img)
+		return (exit(1), NULL);
 	img->mlx_ptr = data->mlx_ptr;
-	img->win_ptr = data->win_ptr;
-	ft_lstadd_back(&data->img_ptrs, ft_lstnew(img));
+	img->img_ptr = mlx_xpm_file_to_image(data->mlx_ptr, file_name,
+			&img->width, &img->height);
+	if (!img->img_ptr)
+		return (free(img), exit(1), NULL);
+	img->addr = mlx_get_data_addr(img->img_ptr, &img->bpp,
+			&img->line_len, &img->endian);
 	return (img);
 }
 
@@ -43,20 +58,11 @@ void	set_pixel_in_image(t_image *img, int x, int y, int color)
 	}
 }
 
-void	free_images(t_data *data)
+void	clear_image(t_image *img)
 {
-	ft_lstclear(&data->img_ptrs, (void *)free_image);
-	data->img_ptrs = NULL;
-}
-
-void	*free_image(t_image *img)
-{
-	if (img)
-	{
-		if (img->mlx_ptr && img->img_ptr)
-			mlx_destroy_image(img->mlx_ptr, img->img_ptr);
-		free(img);
-		img = NULL;
-	}
-	return (NULL);
+	if (!img)
+		return ;
+	mlx_destroy_image(img->mlx_ptr, img->img_ptr);
+	free(img);
+	img = NULL;
 }

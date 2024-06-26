@@ -6,11 +6,11 @@
 /*   By: muabdi <muabdi@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 19:41:50 by muabdi            #+#    #+#             */
-/*   Updated: 2024/05/28 23:16:07 by muabdi           ###   ########.fr       */
+/*   Updated: 2024/06/02 23:53:48 by muabdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../includes/so_long.h"
 
 t_image	*render_background(t_game *game, int colour)
 {
@@ -41,10 +41,10 @@ int	render_loop(t_game *game)
 {
 	t_player	*player;
 
-	if (game->data->stop_loop)
+	if (game->data->stop_render)
 		return (0);
 	player = game->player;
-	if (!player->sprite || player->asset_changed || player->position_changed)
+	if (player->asset_changed || player->position_changed)
 	{
 		render_background(game, create_rgb(0, 0, 0));
 		render_player(game);

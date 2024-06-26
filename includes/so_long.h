@@ -6,7 +6,7 @@
 /*   By: muabdi <muabdi@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 23:44:11 by muabdi            #+#    #+#             */
-/*   Updated: 2024/05/27 16:03:43 by muabdi           ###   ########.fr       */
+/*   Updated: 2024/06/02 23:53:52 by muabdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,13 @@
 
 // External Libraries
 
-# include "libft.h"
-# include "mlx.h"
+# include "../libs/libft/includes/libft.h"
+# include "../libs/minilibx-linux/mlx.h"
 
 // Related headers
 
-# include "utils.h"
-# include "game.h"
-# include "assets.h"
+# include "./utils.h"
+# include "./game.h"
+# include "./assets.h"
 
 #endif
