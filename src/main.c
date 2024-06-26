@@ -6,7 +6,7 @@
 /*   By: muabdi <muabdi@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 19:48:31 by muabdi            #+#    #+#             */
-/*   Updated: 2024/06/26 14:40:13 by muabdi           ###   ########.fr       */
+/*   Updated: 2024/06/26 22:33:11 by muabdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static int	cleanup_game(t_game *game)
 	if (!game)
 		return (handle_error(game, "Unable to free game"), EXIT_FAILURE);
 	cleanup_player(game->player);
-	clear_image(game->background);
+	cleanup_map(game->map);
 	clear_image(game->test_tex);
 	close_window(game->data);
 	free(game);

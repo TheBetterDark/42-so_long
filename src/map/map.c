@@ -6,7 +6,7 @@
 /*   By: muabdi <muabdi@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 16:55:45 by muabdi            #+#    #+#             */
-/*   Updated: 2024/06/26 14:44:58 by muabdi           ###   ########.fr       */
+/*   Updated: 2024/06/26 23:19:31 by muabdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ void	cleanup_map(t_map *map)
 		i++;
 	}
 	free(map->grid);
+	free(map);
 }
 
 static t_map	*allocate_map_grid(int fd)
@@ -72,12 +73,11 @@ static t_map	*allocate_map_grid(int fd)
 	while (line)
 	{
 		map->grid = ft_realloc((void *)map->grid,
-				sizeof(char *) * (map->rows + 1),
-				sizeof(char *) * map->rows);
+				sizeof(char *) * map->rows,
+				sizeof(char *) * (map->rows + 1));
 		map->grid[map->rows] = line;
 		line = get_next_line(fd);
-		if (line)
-			map->rows++;
+		map->rows++;
 	}
 	return (map);
 }
