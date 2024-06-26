@@ -6,7 +6,7 @@
 /*   By: muabdi <muabdi@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 15:54:45 by muabdi            #+#    #+#             */
-/*   Updated: 2024/05/28 21:33:50 by muabdi           ###   ########.fr       */
+/*   Updated: 2024/06/11 15:05:32 by muabdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define ASSETS_H
 
 // Collectable
+
 # define APPLE "./assets/sprites/xpm/collectables/apple.xpm"
 # define BIG_DOT "./assets/sprites/xpm/collectables/big_dot.xpm"
 # define CHERRY "./assets/sprites/xpm/collectables/cherry.xpm"
@@ -21,6 +22,7 @@
 # define STRAWBERRY "./assets/sprites/xpm/collectables/strawberry.xpm"
 
 // Map
+
 # define MAP_WALL "./assets/sprites/xpm/map/wall.xpm"
 
 // Player
@@ -42,6 +44,7 @@
 # define PLAYER_RIGHT_3 "./assets/sprites/xpm/pacman/right/3.xpm"
 
 // Enemy
+
 # define BLINKY "./assets/sprites/xpm/ghosts/blinky.xpm"
 # define CLYDE "./assets/sprites/xpm/ghosts/clyde.xpm"
 # define INKY "./assets/sprites/xpm/ghosts/inky.xpm"

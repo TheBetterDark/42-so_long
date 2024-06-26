@@ -6,7 +6,7 @@
 /*   By: muabdi <muabdi@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 17:37:38 by muabdi            #+#    #+#             */
-/*   Updated: 2024/06/07 20:19:55 by muabdi           ###   ########.fr       */
+/*   Updated: 2024/06/11 14:58:19 by muabdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,20 +66,20 @@ typedef struct s_data
 
 // Function declarations
 
-t_data		*open_window(int width, int height, char *title, void *f);
-int			close_window(t_data *data);
+t_data				*open_window(int width, int height, char *title, void *f);
+int					close_window(t_data *data);
 
-t_image		*create_image(t_data *data, int w, int h);
-t_image		*load_texture(t_data *data, char *file_name);
-void		set_pixel_in_image(t_image *img, int x, int y, int color);
-void		clear_image(t_image *img);
+t_image				*create_image(t_data *data, int w, int h);
+t_image				*load_texture(t_data *data, char *file_name);
+void				set_pixel_in_image(t_image *img, int x, int y, int color);
+void				clear_image(t_image *img);
 
-t_event		*connect_event(int key_code, void *f);
-void		disconnect_event(t_event *event);
+t_event				*connect_event(int key_code, void *f);
+void				disconnect_event(t_event *event);
 
-int			create_rgb(int r, int g, int b);
-int			get_r(int rgb);
-int			get_g(int rgb);
-int			get_b(int rgb);
+int					create_rgb(int r, int g, int b);
+int					get_r(int rgb);
+int					get_g(int rgb);
+int					get_b(int rgb);
 
 #endif

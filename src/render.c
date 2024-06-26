@@ -6,7 +6,7 @@
 /*   By: muabdi <muabdi@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 19:41:50 by muabdi            #+#    #+#             */
-/*   Updated: 2024/06/07 20:28:36 by muabdi           ###   ########.fr       */
+/*   Updated: 2024/06/11 15:39:22 by muabdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,7 @@ void	render_background(t_game *game, int colour)
 	int		y;
 
 	if (!game->background)
-		game->background = create_image(game->data, game->data->width,
-				game->data->height);
+		return ;
 	y = 0;
 	while (y < game->data->height)
 	{

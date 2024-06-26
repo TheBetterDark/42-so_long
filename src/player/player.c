@@ -6,7 +6,7 @@
 /*   By: muabdi <muabdi@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 15:49:47 by muabdi            #+#    #+#             */
-/*   Updated: 2024/06/07 20:28:27 by muabdi           ###   ########.fr       */
+/*   Updated: 2024/06/11 15:34:00 by muabdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ t_player	*create_player(t_game *game, t_vector2 spawn_pos)
 	data = game->data;
 	player = malloc(sizeof(t_player));
 	if (!player)
-		handle_error(game);
+		handle_error(game, "Unable to allocate memory for 'player' struct");
 	player->sprites = load_player_sprites(game->data);
 	player->current_image = player->sprites->player_left->step_1;
 	player->events[0] = connect_event(KEY_W, player_move_up);
@@ -34,6 +34,7 @@ t_player	*create_player(t_game *game, t_vector2 spawn_pos)
 	return (player);
 }
 
+// TODO: Make this into a util (loading animations into the struct)
 t_player_sprites	*load_player_sprites(t_data *data)
 {
 	t_player_sprites	*sprites;
@@ -64,6 +65,8 @@ t_player_sprites	*load_player_sprites(t_data *data)
 
 void	animate_player(t_player *player, t_animation *animation)
 {
+	if (!player || !animation)
+		return ;
 	player->animation_step++;
 	if (player->animation_step >= 3)
 		player->animation_step = 1;
@@ -85,7 +88,7 @@ void	handle_player_event(int key_code, t_game *game)
 	if (!player)
 		return ;
 	i = 0;
-	while (player->events[i])
+	while (i <= 3)
 	{
 		if (player->events[i]->key_code == key_code)
 		{
