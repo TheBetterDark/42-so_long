@@ -6,7 +6,7 @@
 /*   By: muabdi <muabdi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 17:47:05 by muabdi            #+#    #+#             */
-/*   Updated: 2024/05/23 17:56:44 by muabdi           ###   ########.fr       */
+/*   Updated: 2024/05/24 03:54:30 by muabdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,15 @@
 # define GAME_H
 
 // Enum declarations
+
+enum e_map_elements
+{
+	player_spawn = 'P',
+	collectible = 'C',
+	empty = '0',
+	wall = '1',
+	exit = 'E'
+};
 
 // Macro declarations
 
@@ -27,13 +36,20 @@
 
 // Struct declarations
 
-// Function declarations
+typedef struct s_player
+{
+	t_sprite		*sprite;
+	t_vector2		*position;
+	t_event			*events;
+	t_animation		*animation;
+}					t_player;
 
-void		escape_pressed(void);
-void		w_pressed(void);
-void		s_pressed(void);
-void		a_pressed(void);
-void		d_pressed(void);
-void		mouse_one_pressed(int x, int y);
+typedef struct s_game
+{
+	t_data			*data;
+	t_player		*player;
+}					t_game;
+
+// Function declarations
 
 #endif

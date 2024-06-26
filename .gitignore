@@ -17,6 +17,7 @@ bin
 test
 logs
 *.log
+libs
 
 # Environment files
 .env

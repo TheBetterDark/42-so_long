@@ -6,7 +6,7 @@
 /*   By: muabdi <muabdi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 17:37:38 by muabdi            #+#    #+#             */
-/*   Updated: 2024/05/24 01:50:06 by muabdi           ###   ########.fr       */
+/*   Updated: 2024/05/24 03:55:35 by muabdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,10 @@ typedef struct s_color3
 	int				b;
 	int				hex;
 }					t_color3;
+
+typedef struct s_animation
+{
+}					t_animation;
 
 typedef struct s_image
 {
@@ -108,7 +112,7 @@ void		set_pixel_in_image(t_image *img, int x, int y, int color);
 void		free_images(t_data *data);
 void		*free_image(t_image *img);
 
-t_sprite	*create_sprite(t_data *data, char *file_name);
+t_sprite	*create_sprite(t_data *data, char *file_name, t_vector2 position);
 void		free_sprites(t_data *data);
 void		*free_sprite(t_sprite *tex);
 
