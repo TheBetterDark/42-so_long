@@ -6,7 +6,7 @@
 /*   By: muabdi <muabdi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 19:48:31 by muabdi            #+#    #+#             */
-/*   Updated: 2024/05/24 03:12:36 by muabdi           ###   ########.fr       */
+/*   Updated: 2024/05/24 04:08:44 by muabdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 int	main(void)
 {
 	t_image		*background;
-	t_sprite	*sprite;
 	t_data		*data;
 
 	data = open_window(300, 300, "so_long");

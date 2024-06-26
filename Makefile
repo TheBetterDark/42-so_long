@@ -6,7 +6,7 @@
 #    By: muabdi <muabdi@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/12 23:59:26 by muabdi            #+#    #+#              #
-#    Updated: 2024/05/24 04:07:29 by muabdi           ###   ########.fr        #
+#    Updated: 2024/05/24 04:54:01 by muabdi           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,11 +35,11 @@ SRCS = $(shell find $(SRC_DIR) -name '*.c')
 OBJS = $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 
 # SRCS = $(SRC_DIR)/main.c $(SRC_DIR)/utils/events.c $(SRC_DIR)/utils/color.c \
-# $(SRC_DIR)/utils/image.c $(SRC_DIR)/utils/render.c $(SRC_DIR)/utils/sprites.c \
+# $(SRC_DIR)/utils/image.c $(SRC_DIR)/utils/render.c $(SRC_DIR)/utils/texture.c \
 # $(SRC_DIR)/utils/window.c
 
 # OBJS = $(OBJ_DIR)/main.o $(OBJ_DIR)/utils/events.o $(OBJ_DIR)/utils/color.o \
-# $(OBJ_DIR)/utils/image.o $(OBJ_DIR)/utils/render.o $(OBJ_DIR)/utils/sprites.o \
+# $(OBJ_DIR)/utils/image.o $(OBJ_DIR)/utils/render.o $(OBJ_DIR)/utils/texture.o \
 # $(OBJ_DIR)/utils/window.o
 
 all: $(NAME) $(OBJ_DIR)

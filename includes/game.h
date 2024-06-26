@@ -6,7 +6,7 @@
 /*   By: muabdi <muabdi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 17:47:05 by muabdi            #+#    #+#             */
-/*   Updated: 2024/05/24 03:54:30 by muabdi           ###   ########.fr       */
+/*   Updated: 2024/05/24 04:54:15 by muabdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,11 @@
 
 enum e_map_elements
 {
+	exit_position = 'E',
 	player_spawn = 'P',
 	collectible = 'C',
 	empty = '0',
-	wall = '1',
-	exit = 'E'
+	wall = '1'
 };
 
 // Macro declarations
@@ -36,13 +36,23 @@ enum e_map_elements
 
 // Struct declarations
 
-typedef struct s_player
+typedef struct s_character
 {
-	t_sprite		*sprite;
+	t_texture		*texture;
 	t_vector2		*position;
 	t_event			*events;
 	t_animation		*animation;
+}					t_character;
+
+typedef struct s_player
+{
+	t_character		*character_body;
 }					t_player;
+
+typedef struct s_enemy
+{
+	t_character		*character_body;
+}					t_enemy;
 
 typedef struct s_game
 {

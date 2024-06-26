@@ -6,7 +6,7 @@
 /*   By: muabdi <muabdi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 17:37:38 by muabdi            #+#    #+#             */
-/*   Updated: 2024/05/24 03:55:35 by muabdi           ###   ########.fr       */
+/*   Updated: 2024/05/24 04:53:43 by muabdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,14 +35,6 @@ typedef struct s_vector2
 	int				y;
 }					t_vector2;
 
-typedef struct s_color3
-{
-	int				r;
-	int				g;
-	int				b;
-	int				hex;
-}					t_color3;
-
 typedef struct s_animation
 {
 }					t_animation;
@@ -63,7 +55,7 @@ typedef struct s_image
 	int				line_len;
 }					t_image;
 
-typedef struct s_sprite
+typedef struct s_texture
 {
 	void			*mlx_ptr;
 	void			*win_ptr;
@@ -77,7 +69,7 @@ typedef struct s_sprite
 	int				bpp;
 	int				endian;
 	int				line_len;
-}					t_sprite;
+}					t_texture;
 
 typedef struct s_event
 {
@@ -97,7 +89,7 @@ typedef struct s_data
 	t_list			*event_connections;
 	t_list			*animations;
 	t_list			*img_ptrs;
-	t_list			*sprite_ptrs;
+	t_list			*texture_ptrs;
 }					t_data;
 
 // Function declarations
@@ -112,9 +104,9 @@ void		set_pixel_in_image(t_image *img, int x, int y, int color);
 void		free_images(t_data *data);
 void		*free_image(t_image *img);
 
-t_sprite	*create_sprite(t_data *data, char *file_name, t_vector2 position);
-void		free_sprites(t_data *data);
-void		*free_sprite(t_sprite *tex);
+t_texture	*create_texture(t_data *data, char *file_name, t_vector2 position);
+void		free_textures(t_data *data);
+void		*free_texture(t_texture *tex);
 
 t_event		*connect_event(int event_type, int key_code, void *f, t_data *data);
 int			on_mouse_event(int key_code, int x, int y, t_data *data);
