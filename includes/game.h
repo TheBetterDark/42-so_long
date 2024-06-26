@@ -6,17 +6,29 @@
 /*   By: muabdi <muabdi@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 17:47:05 by muabdi            #+#    #+#             */
-/*   Updated: 2024/06/13 16:46:04 by muabdi           ###   ########.fr       */
+/*   Updated: 2024/06/26 14:41:07 by muabdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GAME_H
 # define GAME_H
 
-// Releated headers
+// Standard library headers
+
+# include <X11/X.h>
+# include <fcntl.h>
+# include <stdio.h>
+# include <stdlib.h>
+# include <unistd.h>
+
+// External libraries
+
+# include "../libs/libft/includes/libft.h"
+# include "../libs/minilibx-linux/mlx.h"
+
+// Related headers
 
 # include "./utils.h"
-# include <math.h>
 
 // Enum declarations
 

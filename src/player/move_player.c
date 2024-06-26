@@ -6,11 +6,11 @@
 /*   By: muabdi <muabdi@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 15:37:51 by muabdi            #+#    #+#             */
-/*   Updated: 2024/06/13 16:40:53 by muabdi           ###   ########.fr       */
+/*   Updated: 2024/06/26 14:43:41 by muabdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/so_long.h"
+#include "../../includes/game.h"
 
 static void	print_moves(t_player *player);
 

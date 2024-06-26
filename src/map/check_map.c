@@ -6,11 +6,11 @@
 /*   By: muabdi <muabdi@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 17:48:23 by muabdi            #+#    #+#             */
-/*   Updated: 2024/06/13 14:51:49 by muabdi           ###   ########.fr       */
+/*   Updated: 2024/06/26 14:44:43 by muabdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/so_long.h"
+#include "../../includes/game.h"
 
 static bool	validate_map_borders(t_map *map);
 static bool	validate_map_components(t_map *map);

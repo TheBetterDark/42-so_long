@@ -6,11 +6,11 @@
 /*   By: muabdi <muabdi@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/06 15:21:25 by muabdi            #+#    #+#             */
-/*   Updated: 2024/06/11 15:37:32 by muabdi           ###   ########.fr       */
+/*   Updated: 2024/06/26 14:43:19 by muabdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/so_long.h"
+#include "../../includes/game.h"
 
 void	cleanup_events(t_event **events)
 {

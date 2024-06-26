@@ -6,11 +6,11 @@
 /*   By: muabdi <muabdi@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 18:16:35 by muabdi            #+#    #+#             */
-/*   Updated: 2024/06/13 15:48:36 by muabdi           ###   ########.fr       */
+/*   Updated: 2024/06/26 14:36:36 by muabdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/utils.h"
+#include "../../includes/utils.h"
 
 t_data	*open_window(int width, int height, char *title, void *f)
 {

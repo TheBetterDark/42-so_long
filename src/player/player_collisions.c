@@ -6,11 +6,11 @@
 /*   By: muabdi <muabdi@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 21:25:10 by muabdi            #+#    #+#             */
-/*   Updated: 2024/06/13 15:33:23 by muabdi           ###   ########.fr       */
+/*   Updated: 2024/06/26 14:44:03 by muabdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/so_long.h"
+#include "../../includes/game.h"
 
 bool	check_player_collisions(t_game *game, t_vector2 direction)
 {

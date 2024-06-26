@@ -6,11 +6,11 @@
 /*   By: muabdi <muabdi@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 16:55:45 by muabdi            #+#    #+#             */
-/*   Updated: 2024/06/13 14:52:24 by muabdi           ###   ########.fr       */
+/*   Updated: 2024/06/26 14:44:58 by muabdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/so_long.h"
+#include "../../includes/game.h"
 
 static t_map	*allocate_map_grid(int fd);
 static int		open_file(char *file_path);

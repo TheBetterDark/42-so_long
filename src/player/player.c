@@ -6,11 +6,12 @@
 /*   By: muabdi <muabdi@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 15:49:47 by muabdi            #+#    #+#             */
-/*   Updated: 2024/06/11 19:20:56 by muabdi           ###   ########.fr       */
+/*   Updated: 2024/06/26 14:44:31 by muabdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/so_long.h"
+#include "../../includes/game.h"
+#include "../../includes/assets.h"
 
 t_player	*create_player(t_game *game, t_vector2 spawn_pos)
 {

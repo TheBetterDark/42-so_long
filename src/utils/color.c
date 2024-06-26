@@ -6,11 +6,11 @@
 /*   By: muabdi <muabdi@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 21:17:08 by muabdi            #+#    #+#             */
-/*   Updated: 2024/06/03 16:22:22 by muabdi           ###   ########.fr       */
+/*   Updated: 2024/06/26 14:37:47 by muabdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/utils.h"
+#include "../../includes/utils.h"
 
 int	create_rgb(int r, int g, int b)
 {

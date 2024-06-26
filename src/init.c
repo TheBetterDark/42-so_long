@@ -6,11 +6,12 @@
 /*   By: muabdi <muabdi@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 19:24:08 by muabdi            #+#    #+#             */
-/*   Updated: 2024/06/13 13:44:31 by muabdi           ###   ########.fr       */
+/*   Updated: 2024/06/26 14:42:07 by muabdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/so_long.h"
+#include "../includes/game.h"
+#include "../includes/assets.h"
 
 // TODO: Add argument for the grid (for storing in struct & positioning stuff)
 // TODO: The argument should be a struct containing grid, x & y len & positions
