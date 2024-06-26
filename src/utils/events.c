@@ -6,13 +6,13 @@
 /*   By: muabdi <muabdi@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 22:42:52 by muabdi            #+#    #+#             */
-/*   Updated: 2024/05/29 15:13:29 by muabdi           ###   ########.fr       */
+/*   Updated: 2024/06/03 16:28:55 by muabdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../includes/utils.h"
 
-t_event	*connect_event(int key_code, void *f, t_data *data)
+t_event	*connect_event(int key_code, void *f)
 {
 	t_event	*event;
 

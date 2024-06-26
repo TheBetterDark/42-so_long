@@ -6,7 +6,7 @@
 /*   By: muabdi <muabdi@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 17:47:05 by muabdi            #+#    #+#             */
-/*   Updated: 2024/06/02 23:49:30 by muabdi           ###   ########.fr       */
+/*   Updated: 2024/06/06 19:51:35 by muabdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ typedef struct s_player_sprites
 
 typedef struct s_player
 {
+	t_image					*current_image;
 	t_player_sprites		*sprites;
 	t_event					*events[4];
 	t_vector2				position;
@@ -73,26 +74,32 @@ typedef struct s_player
 
 typedef struct s_game
 {
-	t_data			*data;
-	t_player		*player;
-	t_image			*background;
-	void			*map;
+	t_data					*data;
+	t_player				*player;
+	t_image					*background;
+	void					*map;
 
-	bool			stop_render;
+	bool					stop_render;
 }					t_game;
 
 // Function declarations
 
-t_player	*create_player(t_game *game, t_vector2 spawn_pos);
-void		animate_player(t_player *player, t_direction direction);
-void		render_player(t_game *game);
+t_player			*create_player(t_game *game, t_vector2 spawn_pos);
+void				animate_player(t_player *player, t_animation *animation);
+void				handle_player_event(int key_code, t_game *game);
+t_player_sprites	*load_player_sprites(t_data *data);
+void				render_player(t_game *game);
 
-void		*player_move_up(int key_code, t_game *game);
-void		*player_move_down(int key_code, t_game *game);
-void		*player_move_left(int key_code, t_game *game);
-void		*player_move_right(int key_code, t_game *game);
+void				*player_move_up(int key_code, t_game *game);
+void				*player_move_down(int key_code, t_game *game);
+void				*player_move_left(int key_code, t_game *game);
+void				*player_move_right(int key_code, t_game *game);
 
-t_image		*render_background(t_game *game, int colour);
-int			render_loop(t_game *game);
+void				cleanup_events(t_event **events);
+void				cleanup_sprites(t_player_sprites *sprites);
+void				cleanup_player(t_player *player);
+
+void				render_background(t_game *game, int colour);
+int					render_loop(t_game *game);
 
 #endif

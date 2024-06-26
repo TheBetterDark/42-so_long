@@ -6,11 +6,11 @@
 /*   By: muabdi <muabdi@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 15:49:47 by muabdi            #+#    #+#             */
-/*   Updated: 2024/05/29 14:56:45 by muabdi           ###   ########.fr       */
+/*   Updated: 2024/06/06 22:42:47 by muabdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../../includes/so_long.h"
 
 t_player	*create_player(t_game *game, t_vector2 spawn_pos)
 {
@@ -22,12 +22,14 @@ t_player	*create_player(t_game *game, t_vector2 spawn_pos)
 	if (!player)
 		return (NULL);
 	player->sprites = load_player_sprites(game->data);
-	player->events[0] = connect_event(KEY_W, player_move_up, data);
-	player->events[1] = connect_event(KEY_S, player_move_down, data);
-	player->events[2] = connect_event(KEY_A, player_move_left, data);
-	player->events[3] = connect_event(KEY_D, player_move_right, data);
+	player->current_image = player->sprites->player_left->step_1;
+	player->events[0] = connect_event(KEY_W, player_move_up);
+	player->events[1] = connect_event(KEY_S, player_move_down);
+	player->events[2] = connect_event(KEY_A, player_move_left);
+	player->events[3] = connect_event(KEY_D, player_move_right);
 	player->position = spawn_pos;
 	player->animation_step = 1;
+	player->has_changed = true;
 	game->player = player;
 	return (player);
 }
@@ -41,27 +43,67 @@ t_player_sprites	*load_player_sprites(t_data *data)
 	if (!sprites)
 		return (NULL);
 	pos = (t_vector2){0, 0};
-	sprites->player_up->step_1 = create_texture(data, PLAYER_UP_1, pos);
-	sprites->player_up->step_2 = create_texture(data, PLAYER_UP_2, pos);
-	sprites->player_up->step_3 = create_texture(data, PLAYER_UP_3, pos);
-	sprites->player_down->step_1 = create_texture(data, PLAYER_DOWN_1, pos);
-	sprites->player_down->step_2 = create_texture(data, PLAYER_DOWN_2, pos);
-	sprites->player_down->step_3 = create_texture(data, PLAYER_DOWN_3, pos);
-	sprites->player_left->step_1 = create_texture(data, PLAYER_LEFT_1, pos);
-	sprites->player_left->step_2 = create_texture(data, PLAYER_LEFT_2, pos);
-	sprites->player_left->step_3 = create_texture(data, PLAYER_LEFT_3, pos);
-	sprites->player_right->step_1 = create_texture(data, PLAYER_RIGHT_1, pos);
-	sprites->player_right->step_2 = create_texture(data, PLAYER_RIGHT_2, pos);
-	sprites->player_right->step_3 = create_texture(data, PLAYER_RIGHT_3, pos);
+	sprites->player_up = malloc(sizeof(t_animation));
+	sprites->player_down = malloc(sizeof(t_animation));
+	sprites->player_left = malloc(sizeof(t_animation));
+	sprites->player_right = malloc(sizeof(t_animation));
+	sprites->player_up->step_1 = load_texture(data, PLAYER_UP_1);
+	sprites->player_up->step_2 = load_texture(data, PLAYER_UP_2);
+	sprites->player_up->step_3 = load_texture(data, PLAYER_UP_3);
+	sprites->player_down->step_1 = load_texture(data, PLAYER_DOWN_1);
+	sprites->player_down->step_2 = load_texture(data, PLAYER_DOWN_2);
+	sprites->player_down->step_3 = load_texture(data, PLAYER_DOWN_3);
+	sprites->player_left->step_1 = load_texture(data, PLAYER_LEFT_1);
+	sprites->player_left->step_2 = load_texture(data, PLAYER_LEFT_2);
+	sprites->player_left->step_3 = load_texture(data, PLAYER_LEFT_3);
+	sprites->player_right->step_1 = load_texture(data, PLAYER_RIGHT_1);
+	sprites->player_right->step_2 = load_texture(data, PLAYER_RIGHT_2);
+	sprites->player_right->step_3 = load_texture(data, PLAYER_RIGHT_3);
 	return (sprites);
 }
 
-void	animate_player(t_player *player, t_direction direction)
+void	animate_player(t_player *player, t_animation *animation)
 {
+	player->animation_step++;
+	if (player->animation_step >= 3)
+		player->animation_step = 1;
+	if (player->animation_step == 1)
+		player->current_image = animation->step_1;
+	else if (player->animation_step == 2)
+		player->current_image = animation->step_2;
+	else if (player->animation_step == 3)
+		player->current_image = animation->step_3;
+	player->has_changed = true;
+}
+
+void	handle_player_event(int key_code, t_game *game)
+{
+	t_player	*player;
+	int			i;
+
+	player = game->player;
+	if (!player)
+		return ;
+	i = 0;
+	while (player->events[i])
+	{
+		if (player->events[i]->key_code == key_code)
+		{
+			player->events[i]->event_handler(key_code, game);
+			break ;
+		}
+		i++;
+	}
 }
 
 void	render_player(t_game *game)
 {
-}
+	t_player	*player;
 
-//TODO: Cleanup
+	player = game->player;
+	if (!player)
+		return ;
+	mlx_put_image_to_window(game->data->mlx_ptr, game->data->win_ptr,
+		player->current_image->img_ptr, player->position.x, player->position.y);
+	player->has_changed = false;
+}

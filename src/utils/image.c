@@ -6,11 +6,11 @@
 /*   By: muabdi <muabdi@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 00:42:12 by muabdi            #+#    #+#             */
-/*   Updated: 2024/05/29 15:11:12 by muabdi           ###   ########.fr       */
+/*   Updated: 2024/06/03 16:27:29 by muabdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../includes/utils.h"
 
 t_image	*create_image(t_data *data, int width, int height)
 {
@@ -30,7 +30,7 @@ t_image	*create_image(t_data *data, int width, int height)
 	return (img);
 }
 
-t_image	*load_texture(t_data *data, char *file_name, t_vector2 position)
+t_image	*load_texture(t_data *data, char *file_name)
 {
 	t_image	*img;
 

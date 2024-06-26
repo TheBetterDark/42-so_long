@@ -6,11 +6,11 @@
 /*   By: muabdi <muabdi@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 19:09:06 by muabdi            #+#    #+#             */
-/*   Updated: 2024/05/29 14:56:19 by muabdi           ###   ########.fr       */
+/*   Updated: 2024/06/03 16:30:12 by muabdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../includes/so_long.h"
 
 void	*player_move_up(int key_code, t_game *game)
 {
