@@ -1,24 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: muabdi <muabdi@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/07 20:29:53 by muabdi            #+#    #+#             */
-/*   Updated: 2024/06/12 21:30:32 by muabdi           ###   ########.fr       */
+/*   Created: 2024/06/12 17:48:23 by muabdi            #+#    #+#             */
+/*   Updated: 2024/06/12 18:36:25 by muabdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-int	handle_error(t_game *game, char *info)
+int	validate_map_grid(char **grid)
 {
-	ft_printf("Error: %s\n", info);
-	if (!game)
-		return (exit(EXIT_FAILURE), EXIT_FAILURE);
-	cleanup_player(game->player);
-	close_window(game->data);
-	free(game);
-	return (exit(EXIT_FAILURE), EXIT_FAILURE);
+	(void)grid;
+	return (1);
 }

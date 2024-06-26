@@ -6,7 +6,7 @@
 /*   By: muabdi <muabdi@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 17:47:05 by muabdi            #+#    #+#             */
-/*   Updated: 2024/06/11 22:17:23 by muabdi           ###   ########.fr       */
+/*   Updated: 2024/06/12 21:20:50 by muabdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,14 @@ typedef struct s_animation
 	t_image					*step_3;
 }							t_animation;
 
+typedef struct s_map
+{
+	char					**grid;
+
+	int						rows;
+	int						columns;
+}							t_map;
+
 typedef struct s_player_sprites
 {
 	t_animation				*player_up;
@@ -90,6 +98,9 @@ typedef struct s_game
 t_game				*initalize_game(void);
 int					handle_error(t_game *game, char *info);
 
+t_map				*create_map_grid(char *file_path);
+int					validate_map_grid(char **grid);
+
 t_player			*create_player(t_game *game, t_vector2 spawn_pos);
 void				animate_player(t_player *player, t_animation *animation);
 void				handle_player_event(int key_code, t_game *game);
@@ -106,6 +117,7 @@ void				*player_move_right(int key_code, t_game *game);
 void				cleanup_events(t_event **events);
 void				cleanup_sprites(t_player_sprites *sprites);
 void				cleanup_player(t_player *player);
+void				cleanup_map(t_map *map);
 
 void				render_background(t_game *game, int colour);
 int					render_loop(t_game *game);
