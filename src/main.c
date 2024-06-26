@@ -6,7 +6,7 @@
 /*   By: muabdi <muabdi@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 19:48:31 by muabdi            #+#    #+#             */
-/*   Updated: 2024/06/06 22:41:10 by muabdi           ###   ########.fr       */
+/*   Updated: 2024/06/06 23:10:28 by muabdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	main(void)
 
 static int	on_key_event(int key_code, t_game *game)
 {
-	if (game || !game->data)
+	if (!game || !game->data)
 		return (-1);
 	handle_player_event(key_code, game);
 	return (0);
