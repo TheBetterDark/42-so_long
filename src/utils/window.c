@@ -6,7 +6,7 @@
 /*   By: muabdi <muabdi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 18:16:35 by muabdi            #+#    #+#             */
-/*   Updated: 2024/05/23 01:10:58 by muabdi           ###   ########.fr       */
+/*   Updated: 2024/05/24 00:52:17 by muabdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,10 @@ t_data	*open_window(int width, int height, char *title)
 	data->win_ptr = mlx_new_window(data->mlx_ptr, width, height, title);
 	if (!data->win_ptr)
 		return (close_window(data), NULL);
-	data->event_connections = NULL;
-	data->event_count = 0;
-	data->img_ptrs = NULL;
-	data->img_count = 0;
 	data->height = height;
 	data->width = width;
+	data->event_connections = NULL;
+	data->img_ptrs = NULL;
 	return (data);
 }
 
@@ -38,8 +36,9 @@ int	close_window(t_data *data)
 {
 	if (data)
 	{
-		free_images(data);
 		free_events(data);
+		free_sprites(data);
+		free_images(data);
 		mlx_destroy_window(data->mlx_ptr, data->win_ptr);
 		mlx_destroy_display(data->mlx_ptr);
 		free(data->mlx_ptr);

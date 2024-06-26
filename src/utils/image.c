@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   img.c                                            :+:      :+:    :+:   */
+/*   image.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: muabdi <muabdi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/17 19:13:02 by muabdi            #+#    #+#             */
-/*   Updated: 2024/05/21 19:26:35 by muabdi           ###   ########.fr       */
+/*   Created: 2024/05/24 00:42:12 by muabdi            #+#    #+#             */
+/*   Updated: 2024/05/24 00:42:16 by muabdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,9 @@ t_image	*create_image(t_data *data, int w, int h)
 			&img->endian);
 	img->height = h;
 	img->width = w;
-	data->img_ptrs = ft_realloc(data->img_ptrs,
-			(data->img_count + 1) * sizeof(t_image *));
-	data->img_ptrs[data->img_count] = img;
-	data->img_count++;
+	img->mlx_ptr = data->mlx_ptr;
+	img->win_ptr = data->win_ptr;
+	ft_lstadd_back(&data->img_ptrs, ft_lstnew(img));
 	return (img);
 }
 
@@ -46,22 +45,14 @@ void	set_pixel_in_image(t_image *img, int x, int y, int color)
 
 void	free_images(t_data *data)
 {
-	int	i;
-
-	i = 0;
-	while (i < data->img_count)
-	{
-		free_image(data, data->img_ptrs[i]);
-		i++;
-	}
-	free(data->img_ptrs);
+	ft_lstclear(&data->img_ptrs, (void *)free_image);
 	data->img_ptrs = NULL;
-	data->img_count = 0;
 }
 
-void	free_image(t_data *data, t_image *img)
+void	*free_image(t_image *img)
 {
-	mlx_destroy_image(data->mlx_ptr, img->img_ptr);
+	mlx_destroy_image(img->mlx_ptr, img->img_ptr);
 	free(img);
 	img = NULL;
+	return (NULL);
 }

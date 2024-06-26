@@ -6,21 +6,48 @@
 /*   By: muabdi <muabdi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 17:37:38 by muabdi            #+#    #+#             */
-/*   Updated: 2024/05/23 00:39:31 by muabdi           ###   ########.fr       */
+/*   Updated: 2024/05/24 00:52:58 by muabdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef UTILS_H
 # define UTILS_H
 
-// X11
-# include <X11/X.h>
-# include <X11/keysym.h>
-# include <X11/keysymdef.h>
+// Related headers
 
-// Structs
+# include <X11/keysymdef.h>
+# include <X11/keysym.h>
+# include <X11/X.h>
+# include <stdbool.h>
+
+// Enum declarations
+
+// Macro declarations
+
+# define MOUSE_EVENT 1
+# define KEY_EVENT 0
+
+// Struct declarations
+
+typedef struct s_vector2
+{
+	int				x;
+	int				y;
+}					t_vector2;
+
+typedef struct s_color3
+{
+	int				r;
+	int				g;
+	int				b;
+	int				hex;
+}					t_color3;
+
 typedef struct s_image
 {
+	void			*mlx_ptr;
+	void			*win_ptr;
+
 	void			*img_ptr;
 	char			*addr;
 
@@ -32,11 +59,28 @@ typedef struct s_image
 	int				line_len;
 }					t_image;
 
+typedef struct s_sprite
+{
+	void			*mlx_ptr;
+	void			*win_ptr;
+
+	void			*xpm_ptr;
+	char			*addr;
+
+	int				height;
+	int				width;
+
+	int				bpp;
+	int				endian;
+	int				line_len;
+}					t_sprite;
+
 typedef struct s_event
 {
 	int				event_type; // 0 = Keyboard | 1 = Mouse
 	int				key_code;
-	void			(*f)(void);
+	void			(*f_mouse)(int x, int y);
+	void			(*f_key)(void); // TODO: Make into variadic function
 }					t_event;
 
 typedef struct s_data
@@ -46,40 +90,37 @@ typedef struct s_data
 	int				height;
 	int				width;
 
-	t_image			**img_ptrs;
-	int				img_count;
-
-	t_event			**event_connections;
-	int				event_count;
+	t_list			*event_connections;
+	t_list			*animations;
+	t_list			*img_ptrs;
+	t_list			*tex_ptrs;
 }					t_data;
 
-// Window
+// Function declarations
+
 t_data		*open_window(int width, int height, char *title);
 int			close_window(t_data *data);
 
-// Render
 t_image		*render_background(t_data *data, int colour);
 
-// Images
-void		set_pixel_in_image(t_image *img, int x, int y, int color);
 t_image		*create_image(t_data *data, int w, int h);
-void		free_image(t_data *data, t_image *img);
+void		set_pixel_in_image(t_image *img, int x, int y, int color);
 void		free_images(t_data *data);
+void		*free_image(t_image *img);
 
-// Events
+t_sprite	*create_sprite(t_data *data, char *file_name);
+void		free_sprites(t_data *data);
+void		*free_sprite(t_sprite *tex);
+
 t_event		*connect_event(int event_type, int key_code, void *f, t_data *data);
-int			on_mouse_event(int key_code, t_data *data);
+int			on_mouse_event(int key_code, int x, int y, t_data *data);
 int			on_key_event(int key_code, t_data *data);
+void		*free_event(t_event *event);
 void		free_events(t_data *data);
-void		free_event(t_event *event);
 
-// Color
 int			create_rgb(int r, int g, int b);
 int			get_r(int rgb);
 int			get_g(int rgb);
 int			get_b(int rgb);
-
-# define KEY_EVENT 0
-# define MOUSE_EVENT 1
 
 #endif
