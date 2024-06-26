@@ -6,7 +6,7 @@
 /*   By: muabdi <muabdi@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 17:37:38 by muabdi            #+#    #+#             */
-/*   Updated: 2024/06/11 14:58:19 by muabdi           ###   ########.fr       */
+/*   Updated: 2024/06/11 21:26:11 by muabdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,15 @@ typedef struct s_vector2
 	int				x;
 	int				y;
 }					t_vector2;
+
+typedef struct s_bounding_box
+{
+	int				x;
+	int				y;
+
+	int				height;
+	int				width;
+}					t_bounding_box;
 
 typedef struct s_image
 {
@@ -76,6 +85,8 @@ void				clear_image(t_image *img);
 
 t_event				*connect_event(int key_code, void *f);
 void				disconnect_event(t_event *event);
+
+bool				check_bounding_box(t_bounding_box a, t_bounding_box b);
 
 int					create_rgb(int r, int g, int b);
 int					get_r(int rgb);

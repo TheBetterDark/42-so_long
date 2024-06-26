@@ -6,7 +6,7 @@
 /*   By: muabdi <muabdi@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 17:47:05 by muabdi            #+#    #+#             */
-/*   Updated: 2024/06/11 19:21:04 by muabdi           ###   ########.fr       */
+/*   Updated: 2024/06/11 22:17:23 by muabdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,8 @@ typedef struct s_game
 	t_image					*background;
 	char					**map;
 
+	t_image					*test_tex;
+
 	bool					stop_render;
 }							t_game;
 
@@ -93,6 +95,8 @@ void				animate_player(t_player *player, t_animation *animation);
 void				handle_player_event(int key_code, t_game *game);
 t_player_sprites	*load_player_sprites(t_data *data);
 void				render_player(t_game *game);
+
+bool				check_player_collisions(t_game *game, t_vector2 direction);
 
 void				*player_move_up(int key_code, t_game *game);
 void				*player_move_down(int key_code, t_game *game);
