@@ -6,7 +6,7 @@
 /*   By: muabdi <muabdi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 19:48:31 by muabdi            #+#    #+#             */
-/*   Updated: 2024/05/24 04:08:44 by muabdi           ###   ########.fr       */
+/*   Updated: 2024/05/24 18:10:31 by muabdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,12 @@
 
 int	main(void)
 {
-	t_image		*background;
 	t_data		*data;
 
 	data = open_window(300, 300, "so_long");
 	if (!data->mlx_ptr || !data->win_ptr)
 		return (EXIT_FAILURE);
-	background = render_background(data, create_rgb(0, 0, 0));
+	render_background(data, create_rgb(0, 0, 0));
 	mlx_hook(data->win_ptr, DestroyNotify, NoEventMask, close_window, data);
 	mlx_loop(data->mlx_ptr);
 	close_window(data);

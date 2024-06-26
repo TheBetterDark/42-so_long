@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: muabdi <muabdi@student.42.fr>              +#+  +:+       +#+         #
+#    By: muabdi <muabdi@student.42london.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/12 23:59:26 by muabdi            #+#    #+#              #
-#    Updated: 2024/05/24 04:54:01 by muabdi           ###   ########.fr        #
+#    Updated: 2024/05/24 23:11:10 by muabdi           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,8 +21,8 @@ MLX = $(LIBS)/minilibx-linux
 CC = cc
 CFLAGS = -Wall -Werror -Wextra -g3 #! Remember to remove -g3 flag
 
-LINKFLAGS = -L$(LIBFT) -L$(MLX) -lmlx -lXext -lX11 -lm -lft
 INCLUDEFLAGS = -I$(INCLUDES) -I$(LIBFT) -I$(MLX)
+LINKFLAGS = -lmlx -lXext -lX11 -lm -lft #! Verify this
 
 SRC_DIR = ./src
 OBJ_DIR = ./bin
@@ -52,10 +52,9 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	$(CC) $(CFLAGS) $(INCLUDEFLAGS) -c $< -o $@
 
 ${NAME}: $(OBJS)
-	@make -C $(LIBFT)
-	@make -C $(LIBFT) bonus
 	@make -C $(MLX)
-	$(CC) $(CFLAGS) $(OBJS) $(LINKFLAGS) -o $(NAME)
+	@make -C $(LIBFT)
+	$(CC) $(CFLAGS) $(OBJS) -L$(LIBFT) -L$(MLX) $(LINKFLAGS) -o $(NAME)
 
 clean:
 	@make clean -C $(MLX)
@@ -73,7 +72,7 @@ fclean:
 re: fclean all
 
 libs:
-	@git submodule update --init --recursive
+	@git submodule update --init --recursive --remote
 
 test: all
 	./$(NAME)
