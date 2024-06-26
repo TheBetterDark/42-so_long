@@ -6,7 +6,7 @@
 /*   By: muabdi <muabdi@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 17:47:05 by muabdi            #+#    #+#             */
-/*   Updated: 2024/06/11 15:07:42 by muabdi           ###   ########.fr       */
+/*   Updated: 2024/06/11 19:21:04 by muabdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ typedef struct s_player
 	t_vector2				position;
 
 	int						animation_step;
+	int						move_count;
 	bool					has_changed;
 }							t_player;
 

@@ -6,7 +6,7 @@
 /*   By: muabdi <muabdi@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 19:24:08 by muabdi            #+#    #+#             */
-/*   Updated: 2024/06/11 15:39:47 by muabdi           ###   ########.fr       */
+/*   Updated: 2024/06/11 19:28:51 by muabdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@ t_game	*initalize_game(void)
 	game->data = open_window(300, 300, "so_long", handle_error);
 	if (!game->data->mlx_ptr || !game->data->win_ptr)
 		handle_error(game, "");
-	game->player = create_player(game, (t_vector2){150, 150});
 	game->background = create_image(game->data, game->data->width,
 			game->data->height);
+	game->player = create_player(game, (t_vector2){150, 150});
 	game->map = NULL;
 	game->stop_render = NULL;
 	return (game);

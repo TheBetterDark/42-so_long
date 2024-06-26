@@ -6,11 +6,13 @@
 /*   By: muabdi <muabdi@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 19:09:06 by muabdi            #+#    #+#             */
-/*   Updated: 2024/06/06 23:14:11 by muabdi           ###   ########.fr       */
+/*   Updated: 2024/06/11 19:30:33 by muabdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
+
+static void	print_moves(t_player *player);
 
 void	*player_move_up(int key_code, t_game *game)
 {
@@ -21,6 +23,7 @@ void	*player_move_up(int key_code, t_game *game)
 		return (NULL);
 	player->position.y -= 5;
 	animate_player(player, player->sprites->player_up);
+	print_moves(player);
 	return (NULL);
 }
 
@@ -33,6 +36,7 @@ void	*player_move_down(int key_code, t_game *game)
 		return (NULL);
 	player->position.y += 5;
 	animate_player(player, player->sprites->player_down);
+	print_moves(player);
 	return (NULL);
 }
 
@@ -45,6 +49,7 @@ void	*player_move_left(int key_code, t_game *game)
 		return (NULL);
 	player->position.x -= 5;
 	animate_player(player, player->sprites->player_left);
+	print_moves(player);
 	return (NULL);
 }
 
@@ -57,5 +62,12 @@ void	*player_move_right(int key_code, t_game *game)
 		return (NULL);
 	player->position.x += 5;
 	animate_player(player, player->sprites->player_right);
+	print_moves(player);
 	return (NULL);
+}
+
+static void	print_moves(t_player *player)
+{
+	player->move_count++;
+	ft_printf("Number of Moves: %d\n", player->move_count);
 }

@@ -6,7 +6,7 @@
 /*   By: muabdi <muabdi@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 15:49:47 by muabdi            #+#    #+#             */
-/*   Updated: 2024/06/11 15:34:00 by muabdi           ###   ########.fr       */
+/*   Updated: 2024/06/11 19:20:56 by muabdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ t_player	*create_player(t_game *game, t_vector2 spawn_pos)
 	player->events[3] = connect_event(KEY_D, player_move_right);
 	player->position = spawn_pos;
 	player->animation_step = 1;
+	player->move_count = 0;
 	player->has_changed = true;
 	game->player = player;
 	return (player);
