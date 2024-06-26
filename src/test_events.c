@@ -1,34 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render.c                                           :+:      :+:    :+:   */
+/*   test_events.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: muabdi <muabdi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/21 19:41:50 by muabdi            #+#    #+#             */
-/*   Updated: 2024/05/21 22:38:05 by muabdi           ###   ########.fr       */
+/*   Created: 2024/05/22 23:03:01 by muabdi            #+#    #+#             */
+/*   Updated: 2024/05/23 01:02:44 by muabdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-t_image	*render_background(t_mlx *mlx, int colour)
+void	escape_pressed(void)
 {
-	t_image	*image;
-	int		x;
-	int		y;
+	printf("The escape key was pressed\n");
+}
 
-	y = 0;
-	image = create_image(mlx, mlx->width, mlx->height);
-	while (y < mlx->height)
-	{
-		x = 0;
-		while (x < mlx->width)
-		{
-			set_pixel_in_image(image, x, y, colour);
-			x++;
-		}
-		y++;
-	}
-	return (image);
+void	w_pressed(void)
+{
+	printf("The W key was pressed\n");
+}
+
+void	s_pressed(void)
+{
+	printf("The S key was pressed\n");
+}
+
+void	a_pressed(void)
+{
+	printf("The A key was pressed\n");
+}
+
+void	d_pressed(void)
+{
+	printf("The D key was pressed\n");
 }

@@ -6,7 +6,7 @@
 #    By: muabdi <muabdi@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/12 23:59:26 by muabdi            #+#    #+#              #
-#    Updated: 2024/05/22 18:29:25 by muabdi           ###   ########.fr        #
+#    Updated: 2024/05/22 21:47:16 by muabdi           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,14 +23,16 @@ CFLAGS = -Wall -Werror -Wextra -g3
 LINKFLAGS = -L$(LIBFT) -L$(MLX) -lmlx -lXext -lX11 -lm -lft
 
 SRC_DIR = ./src
-OBJ_DIR =./build
+UTILS_DIR = ./utils
+OBJ_DIR =./bin
 LOG_DIR = ./logs
 
 OUTPUT_LEAKS = $(LOG_DIR)/valgrind.log
 
-# DO NOT SUBMIT WITH THIS: DOUBLE CHECK IF WE CAN USE THIS
-SRCS = $(wildcard $(SRC_DIR)/*.c)
-OBJS = $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
+#! DO NOT SUBMIT WITH THIS:
+SRCS = $(wildcard $(SRC_DIR)/*.c) $(wildcard $(UTILS_DIR)/*.c)
+OBJS = $(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(wildcard $(SRC_DIR)/*.c)) \
+       $(patsubst $(UTILS_DIR)/%.c, $(OBJ_DIR)/%.o, $(wildcard $(UTILS_DIR)/*.c))
 
 all: $(OBJ_DIR) $(NAME)
 
@@ -38,27 +40,28 @@ $(OBJ_DIR):
 	@mkdir -p $(OBJ_DIR)
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_DIR)
-	$(CC) $(CFLAGS) $(DEBUG) -I$(INCLUDES) -I$(LIBFT) -I$(MLX) -c $< -o $@
+	$(CC) $(CFLAGS) -I$(INCLUDES) -I$(LIBFT) -I$(MLX) -c $< -o $@
 
-${NAME}: libft mlx $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) $(LINKFLAGS) -o $(NAME)
+$(OBJ_DIR)/%.o: $(UTILS_DIR)/%.c | $(OBJ_DIR)
+	$(CC) $(CFLAGS) -I$(INCLUDES) -I$(LIBFT) -I$(MLX) -c $< -o $@
 
-libft:
+${NAME}: $(OBJS)
 	@make -C $(LIBFT)
-
-mlx:
 	@make -C $(MLX)
+	$(CC) $(CFLAGS) $(OBJS) $(LINKFLAGS) -o $(NAME)
 
 clean:
 	@make clean -C $(MLX)
 	@make clean -C $(LIBFT)
 	@rm -rf $(OBJ_DIR)
+	@rm -rf $(LOG_DIR)
 
 fclean:
 	@make clean -C $(MLX)
 	@make fclean -C $(LIBFT)
 	@rm -rf $(OBJ_DIR)
 	@rm -f $(NAME)
+	@rm -rf $(LOG_DIR)
 
 re: fclean all
 

@@ -12,22 +12,24 @@
 
 #include "so_long.h"
 
-t_image	*create_image(t_mlx *mlx, int w, int h)
+t_image	*create_image(t_data *data, int w, int h)
 {
 	t_image	*img;
 
 	img = malloc(sizeof(t_image));
 	if (!img)
 		return (NULL);
-	img->img_ptr = mlx_new_image(mlx->mlx_ptr, w, h);
+	img->img_ptr = mlx_new_image(data->mlx_ptr, w, h);
+	if (!img->img_ptr)
+		return (close_window(data), NULL);
 	img->addr = mlx_get_data_addr(img->img_ptr, &img->bpp, &img->line_len,
 			&img->endian);
-	img->h = h;
-	img->w = w;
-	mlx->img_ptrs = ft_realloc(mlx->img_ptrs, (mlx->img_count + 1)
-			* sizeof(void *));
-	mlx->img_ptrs[mlx->img_count] = img;
-	mlx->img_count++;
+	img->height = h;
+	img->width = w;
+	data->img_ptrs = ft_realloc(data->img_ptrs,
+			(data->img_count + 1) * sizeof(t_image *));
+	data->img_ptrs[data->img_count] = img;
+	data->img_count++;
 	return (img);
 }
 
@@ -35,31 +37,31 @@ void	set_pixel_in_image(t_image *img, int x, int y, int color)
 {
 	char	*dst;
 
-	if (x >= 0 && y >= 0 && x < img->w && y < img->h)
+	if (x >= 0 && y >= 0 && x < img->width && y < img->height)
 	{
 		dst = img->addr + (y * img->line_len + x * (img->bpp / 8));
 		*(unsigned int *) dst = color;
 	}
 }
 
-void	free_images(t_mlx *mlx)
+void	free_images(t_data *data)
 {
 	int	i;
 
 	i = 0;
-	while (i < mlx->img_count)
+	while (i < data->img_count)
 	{
-		free_image(mlx, mlx->img_ptrs[i]);
+		free_image(data, data->img_ptrs[i]);
 		i++;
 	}
-	free(mlx->img_ptrs);
-	mlx->img_ptrs = NULL;
-	mlx->img_count = 0;
+	free(data->img_ptrs);
+	data->img_ptrs = NULL;
+	data->img_count = 0;
 }
 
-void	free_image(t_mlx *mlx, t_image *img)
+void	free_image(t_data *data, t_image *img)
 {
-	mlx_destroy_image(mlx->mlx_ptr, img->img_ptr);
+	mlx_destroy_image(data->mlx_ptr, img->img_ptr);
 	free(img);
 	img = NULL;
 }

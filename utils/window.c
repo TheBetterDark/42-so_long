@@ -6,37 +6,44 @@
 /*   By: muabdi <muabdi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 18:16:35 by muabdi            #+#    #+#             */
-/*   Updated: 2024/05/22 18:21:37 by muabdi           ###   ########.fr       */
+/*   Updated: 2024/05/23 01:10:58 by muabdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-t_mlx	*open_window(int width, int height, char *title)
+t_data	*open_window(int width, int height, char *title)
 {
-	t_mlx	*mlx;
+	t_data	*data;
 
-	mlx = malloc(sizeof(t_mlx));
-	if (!mlx)
+	data = malloc(sizeof(t_data));
+	if (!data)
 		return (NULL);
-	mlx->mlx_ptr = mlx_init();
-	mlx->win_ptr = mlx_new_window(mlx->mlx_ptr, width, height, title);
-	mlx->img_ptrs = NULL;
-	mlx->img_count = 0;
-	mlx->height = height;
-	mlx->width = width;
-	return (mlx);
+	data->mlx_ptr = mlx_init();
+	if (!data->mlx_ptr)
+		return (free(data), NULL);
+	data->win_ptr = mlx_new_window(data->mlx_ptr, width, height, title);
+	if (!data->win_ptr)
+		return (close_window(data), NULL);
+	data->event_connections = NULL;
+	data->event_count = 0;
+	data->img_ptrs = NULL;
+	data->img_count = 0;
+	data->height = height;
+	data->width = width;
+	return (data);
 }
 
-int	close_window(t_mlx *mlx)
+int	close_window(t_data *data)
 {
-	if (mlx)
+	if (data)
 	{
-		free_images(mlx);
-		mlx_destroy_window(mlx->mlx_ptr, mlx->win_ptr);
-		mlx_destroy_display(mlx->mlx_ptr);
-		free(mlx->mlx_ptr);
-		free(mlx);
+		free_images(data);
+		free_events(data);
+		mlx_destroy_window(data->mlx_ptr, data->win_ptr);
+		mlx_destroy_display(data->mlx_ptr);
+		free(data->mlx_ptr);
+		free(data);
 	}
 	exit(EXIT_SUCCESS);
 }

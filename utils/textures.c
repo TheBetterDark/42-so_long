@@ -1,33 +1,13 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   color.c                                            :+:      :+:    :+:   */
+/*   textures.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: muabdi <muabdi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/17 21:17:08 by muabdi            #+#    #+#             */
-/*   Updated: 2024/05/21 19:36:23 by muabdi           ###   ########.fr       */
+/*   Created: 2024/05/22 21:56:09 by muabdi            #+#    #+#             */
+/*   Updated: 2024/05/22 22:06:50 by muabdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-int	create_rgb(int r, int g, int b)
-{
-	return (r << 16 | g << 8 | b);
-}
-
-int	get_r(int rgb)
-{
-	return (rgb >> 16 & 0xFF);
-}
-
-int	get_g(int rgb)
-{
-	return (rgb >> 8 & 0xFF);
-}
-
-int	get_b(int rgb)
-{
-	return (rgb & 0xFF);
-}
