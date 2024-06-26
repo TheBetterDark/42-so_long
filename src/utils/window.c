@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   window.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: muabdi <muabdi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: muabdi <muabdi@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 18:16:35 by muabdi            #+#    #+#             */
-/*   Updated: 2024/05/24 04:53:43 by muabdi           ###   ########.fr       */
+/*   Updated: 2024/05/25 19:34:09 by muabdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ int	close_window(t_data *data)
 {
 	if (data)
 	{
+		destory_animations(data);
 		free_events(data);
 		free_textures(data);
 		free_images(data);

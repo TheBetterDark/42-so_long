@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: muabdi <muabdi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: muabdi <muabdi@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 17:37:38 by muabdi            #+#    #+#             */
-/*   Updated: 2024/05/24 04:53:43 by muabdi           ###   ########.fr       */
+/*   Updated: 2024/05/25 19:32:10 by muabdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ typedef struct s_vector2
 
 typedef struct s_animation
 {
+	t_list			*frames;
 }					t_animation;
 
 typedef struct s_image
