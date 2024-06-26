@@ -3,30 +3,40 @@
 /*                                                        :::      ::::::::   */
 /*   window.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: muabdi <muabdi@student.42london.com>       +#+  +:+       +#+        */
+/*   By: muabdi <muabdi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 18:16:35 by muabdi            #+#    #+#             */
-/*   Updated: 2024/05/17 21:48:32 by muabdi           ###   ########.fr       */
+/*   Updated: 2024/05/22 18:21:37 by muabdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-t_window	open_window(int w, int h, char *str)
+t_mlx	*open_window(int width, int height, char *title)
 {
-	void	*mlx_ptr;
+	t_mlx	*mlx;
 
-	mlx_ptr = mlx_init();
-	return ((t_window){mlx_ptr, mlx_new_window(mlx_ptr, w, h, str), w, h});
+	mlx = malloc(sizeof(t_mlx));
+	if (!mlx)
+		return (NULL);
+	mlx->mlx_ptr = mlx_init();
+	mlx->win_ptr = mlx_new_window(mlx->mlx_ptr, width, height, title);
+	mlx->img_ptrs = NULL;
+	mlx->img_count = 0;
+	mlx->height = height;
+	mlx->width = width;
+	return (mlx);
 }
 
-int	close_window(t_window *mlx_window)
+int	close_window(t_mlx *mlx)
 {
-	if (mlx_window)
+	if (mlx)
 	{
-		mlx_destroy_window(mlx_window->mlx_ptr, mlx_window->win_ptr);
-		mlx_destroy_display(mlx_window->mlx_ptr);
-		free(mlx_window->mlx_ptr);
+		free_images(mlx);
+		mlx_destroy_window(mlx->mlx_ptr, mlx->win_ptr);
+		mlx_destroy_display(mlx->mlx_ptr);
+		free(mlx->mlx_ptr);
+		free(mlx);
 	}
 	exit(EXIT_SUCCESS);
 }

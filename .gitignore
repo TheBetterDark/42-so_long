@@ -16,7 +16,7 @@ build
 .vscode
 test
 logs
-.log
+*.log
 
 # Environment files
 .env

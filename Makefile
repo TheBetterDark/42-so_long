@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: muabdi <muabdi@student.42london.com>       +#+  +:+       +#+         #
+#    By: muabdi <muabdi@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/12 23:59:26 by muabdi            #+#    #+#              #
-#    Updated: 2024/05/17 21:32:48 by muabdi           ###   ########.fr        #
+#    Updated: 2024/05/22 18:29:25 by muabdi           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,9 +19,8 @@ LIBFT = $(LIBS)/libft
 MLX = $(LIBS)/minilibx-linux
 
 CC = cc
-CFLAGS = -Wall -Werror -Wextra 
-LINKFLAGS = -L$(LIBFT) -L$(MLX) -lmlx -lXext -lX11 -lm
-DEBUGFLAGS = -g3
+CFLAGS = -Wall -Werror -Wextra -g3
+LINKFLAGS = -L$(LIBFT) -L$(MLX) -lmlx -lXext -lX11 -lm -lft
 
 SRC_DIR = ./src
 OBJ_DIR =./build

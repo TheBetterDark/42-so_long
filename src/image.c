@@ -1,30 +1,65 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   image.c                                            :+:      :+:    :+:   */
+/*   img.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: muabdi <muabdi@student.42london.com>       +#+  +:+       +#+        */
+/*   By: muabdi <muabdi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 19:13:02 by muabdi            #+#    #+#             */
-/*   Updated: 2024/05/17 21:51:20 by muabdi           ###   ########.fr       */
+/*   Updated: 2024/05/21 19:26:35 by muabdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-t_image	create_image(t_window *mlx_window, int w, int h)
+t_image	*create_image(t_mlx *mlx, int w, int h)
 {
-	t_image	image;
+	t_image	*img;
 
-	image.img_ptr = mlx_new_image(mlx_window->mlx_ptr, w, h);
-	image.addr = mlx_get_data_addr(image.img_ptr, &image.bpp, &image.line_len,
-			&image.endian);
-	image.h = h;
-	image.w = w;
-	return (image);
+	img = malloc(sizeof(t_image));
+	if (!img)
+		return (NULL);
+	img->img_ptr = mlx_new_image(mlx->mlx_ptr, w, h);
+	img->addr = mlx_get_data_addr(img->img_ptr, &img->bpp, &img->line_len,
+			&img->endian);
+	img->h = h;
+	img->w = w;
+	mlx->img_ptrs = ft_realloc(mlx->img_ptrs, (mlx->img_count + 1)
+			* sizeof(void *));
+	mlx->img_ptrs[mlx->img_count] = img;
+	mlx->img_count++;
+	return (img);
 }
 
-void	destroy_image(t_image *image)
+void	set_pixel_in_image(t_image *img, int x, int y, int color)
 {
-	mlx_destroy_image(image->win.mlx_ptr, image->img_ptr);
+	char	*dst;
+
+	if (x >= 0 && y >= 0 && x < img->w && y < img->h)
+	{
+		dst = img->addr + (y * img->line_len + x * (img->bpp / 8));
+		*(unsigned int *) dst = color;
+	}
+}
+
+void	free_images(t_mlx *mlx)
+{
+	int	i;
+
+	i = 0;
+	while (i < mlx->img_count)
+	{
+		free_image(mlx, mlx->img_ptrs[i]);
+		i++;
+	}
+	free(mlx->img_ptrs);
+	mlx->img_ptrs = NULL;
+	mlx->img_count = 0;
+}
+
+void	free_image(t_mlx *mlx, t_image *img)
+{
+	mlx_destroy_image(mlx->mlx_ptr, img->img_ptr);
+	free(img);
+	img = NULL;
 }

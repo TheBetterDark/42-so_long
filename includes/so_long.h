@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: muabdi <muabdi@student.42london.com>       +#+  +:+       +#+        */
+/*   By: muabdi <muabdi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 23:44:11 by muabdi            #+#    #+#             */
-/*   Updated: 2024/05/17 21:18:19 by muabdi           ###   ########.fr       */
+/*   Updated: 2024/05/22 17:35:11 by muabdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,7 @@
 # include "mlx.h"
 
 // Custom Headers
-# include "color.h"
-# include "image.h"
-# include "window.h"
+# include "utils.h"
+// # include "game.h"
 
 #endif
