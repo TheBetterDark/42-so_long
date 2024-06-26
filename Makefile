@@ -6,7 +6,7 @@
 #    By: muabdi <muabdi@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/12 23:59:26 by muabdi            #+#    #+#              #
-#    Updated: 2024/05/24 01:43:37 by muabdi           ###   ########.fr        #
+#    Updated: 2024/05/24 01:47:39 by muabdi           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,10 +42,10 @@ OBJS = $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 # $(OBJ_DIR)/utils/image.o $(OBJ_DIR)/utils/render.o $(OBJ_DIR)/utils/sprites.o \
 # $(OBJ_DIR)/utils/window.o
 
+all: $(NAME) $(OBJ_DIR)
+
 $(OBJ_DIR):
 	@mkdir -p $(OBJ_DIR)
-
-all: $(OBJ_DIR) $(NAME)
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	@mkdir -p $(@D)
