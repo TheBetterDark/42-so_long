@@ -6,7 +6,7 @@
 /*   By: muabdi <muabdi@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 21:25:10 by muabdi            #+#    #+#             */
-/*   Updated: 2024/06/26 14:44:03 by muabdi           ###   ########.fr       */
+/*   Updated: 2024/06/26 16:14:59 by muabdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,6 @@ bool	check_player_collisions(t_game *game, t_vector2 direction)
 			(t_bounding_box){player->position.x + direction.x,
 			player->position.y + direction.y,
 			player->current_image->height, player->current_image->width},
-		(t_bounding_box){0, 0, wall->height, wall->width}
+		(t_bounding_box){96, 96, wall->height, wall->width}
 	));
 }

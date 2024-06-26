@@ -6,7 +6,7 @@
 /*   By: muabdi <muabdi@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 19:41:50 by muabdi            #+#    #+#             */
-/*   Updated: 2024/06/26 14:41:45 by muabdi           ###   ########.fr       */
+/*   Updated: 2024/06/26 16:14:23 by muabdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static void	render_game_image(t_game *game)
 		mlx_clear_window(game->data->mlx_ptr, game->data->win_ptr);
 		render_player(game);
 		mlx_put_image_to_window(game->data->mlx_ptr, game->data->win_ptr,
-			game->test_tex->img_ptr, 0, 0);
+			game->test_tex->img_ptr, 96, 96);
 	}
 }
 

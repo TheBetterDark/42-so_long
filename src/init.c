@@ -6,7 +6,7 @@
 /*   By: muabdi <muabdi@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 19:24:08 by muabdi            #+#    #+#             */
-/*   Updated: 2024/06/26 14:42:07 by muabdi           ###   ########.fr       */
+/*   Updated: 2024/06/26 21:00:23 by muabdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,9 @@ t_game	*initalize_game(void)
 		handle_error(game, "");
 	game->background = create_image(game->data, game->data->width,
 			game->data->height);
+	game->map = NULL;
 	game->player = create_player(game, (t_vector2){150, 150});
 	game->test_tex = load_texture(game->data, MAP_WALL);
-	game->map = NULL;
-	game->stop_render = NULL;
+	game->stop_render = false;
 	return (game);
 }

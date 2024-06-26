@@ -6,7 +6,7 @@
 /*   By: muabdi <muabdi@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 17:47:05 by muabdi            #+#    #+#             */
-/*   Updated: 2024/06/26 14:41:07 by muabdi           ###   ########.fr       */
+/*   Updated: 2024/06/26 22:20:42 by muabdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include <math.h>
 
 // External libraries
 
@@ -57,7 +58,9 @@ typedef enum e_direction
 # define KEY_S 115
 # define KEY_D 100
 
-# define PLAYER_SPEED 500
+# define TILE_SIZE 16 // 16px
+
+# define PLAYER_SPEED 1
 
 // Struct declarations
 
