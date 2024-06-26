@@ -6,7 +6,7 @@
 /*   By: muabdi <muabdi@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 17:47:05 by muabdi            #+#    #+#             */
-/*   Updated: 2024/06/06 19:51:35 by muabdi           ###   ########.fr       */
+/*   Updated: 2024/06/07 20:17:18 by muabdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,12 +77,14 @@ typedef struct s_game
 	t_data					*data;
 	t_player				*player;
 	t_image					*background;
-	void					*map;
+	char					**map;
 
 	bool					stop_render;
 }					t_game;
 
 // Function declarations
+
+t_game				*initalize_game(void *f);
 
 t_player			*create_player(t_game *game, t_vector2 spawn_pos);
 void				animate_player(t_player *player, t_animation *animation);

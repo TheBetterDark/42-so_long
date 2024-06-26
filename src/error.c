@@ -1,32 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   events.c                                           :+:      :+:    :+:   */
+/*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: muabdi <muabdi@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/22 22:42:52 by muabdi            #+#    #+#             */
-/*   Updated: 2024/06/07 20:15:41 by muabdi           ###   ########.fr       */
+/*   Created: 2024/06/07 20:29:53 by muabdi            #+#    #+#             */
+/*   Updated: 2024/06/07 20:34:49 by muabdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/utils.h"
+#include "../includes/so_long.h"
 
-t_event	*connect_event(int key_code, void *f)
+int	handle_error(t_game *game, char *info)
 {
-	t_event	*event;
-
-	event = malloc(sizeof(t_event));
-	if (!event)
-		return (NULL);
-	event->key_code = key_code;
-	event->event_handler = f;
-	return (event);
-}
-
-void	disconnect_event(t_event *event)
-{
-	if (!event)
-		return ;
-	free(event);
+	ft_printf("Error:\n %c\n", info);
+	if (!game)
+		return (exit(EXIT_FAILURE), EXIT_FAILURE);
+	cleanup_player(game->player);
+	close_window(game->data);
+	free(game);
+	return (exit(EXIT_FAILURE), EXIT_FAILURE);
 }

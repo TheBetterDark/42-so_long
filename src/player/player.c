@@ -6,7 +6,7 @@
 /*   By: muabdi <muabdi@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 15:49:47 by muabdi            #+#    #+#             */
-/*   Updated: 2024/06/06 23:13:07 by muabdi           ###   ########.fr       */
+/*   Updated: 2024/06/07 20:28:27 by muabdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ t_player	*create_player(t_game *game, t_vector2 spawn_pos)
 	data = game->data;
 	player = malloc(sizeof(t_player));
 	if (!player)
-		return (NULL);
+		handle_error(game);
 	player->sprites = load_player_sprites(game->data);
 	player->current_image = player->sprites->player_left->step_1;
 	player->events[0] = connect_event(KEY_W, player_move_up);
@@ -94,16 +94,4 @@ void	handle_player_event(int key_code, t_game *game)
 		}
 		i++;
 	}
-}
-
-void	render_player(t_game *game)
-{
-	t_player	*player;
-
-	player = game->player;
-	if (!player)
-		return ;
-	mlx_put_image_to_window(game->data->mlx_ptr, game->data->win_ptr,
-		player->current_image->img_ptr, player->position.x, player->position.y);
-	player->has_changed = false;
 }

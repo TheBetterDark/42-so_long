@@ -6,7 +6,7 @@
 /*   By: muabdi <muabdi@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 17:37:38 by muabdi            #+#    #+#             */
-/*   Updated: 2024/06/06 19:55:25 by muabdi           ###   ########.fr       */
+/*   Updated: 2024/06/07 20:19:55 by muabdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ typedef struct s_data
 	int				height;
 	int				width;
 
-	void			(*error_handler)(void);
+	void			(*error_handler)(void *);
 }					t_data;
 
 // Function declarations
