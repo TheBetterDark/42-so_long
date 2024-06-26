@@ -6,7 +6,7 @@
 /*   By: muabdi <muabdi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 17:37:38 by muabdi            #+#    #+#             */
-/*   Updated: 2024/05/24 00:52:58 by muabdi           ###   ########.fr       */
+/*   Updated: 2024/05/24 01:50:06 by muabdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ typedef struct s_data
 	t_list			*event_connections;
 	t_list			*animations;
 	t_list			*img_ptrs;
-	t_list			*tex_ptrs;
+	t_list			*sprite_ptrs;
 }					t_data;
 
 // Function declarations

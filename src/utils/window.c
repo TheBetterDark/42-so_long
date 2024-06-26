@@ -6,7 +6,7 @@
 /*   By: muabdi <muabdi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 18:16:35 by muabdi            #+#    #+#             */
-/*   Updated: 2024/05/24 00:52:17 by muabdi           ###   ########.fr       */
+/*   Updated: 2024/05/24 01:52:23 by muabdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ t_data	*open_window(int width, int height, char *title)
 	data->height = height;
 	data->width = width;
 	data->event_connections = NULL;
+	data->sprite_ptrs = NULL;
+	data->animations = NULL;
 	data->img_ptrs = NULL;
 	return (data);
 }

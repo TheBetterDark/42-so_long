@@ -14,34 +14,34 @@
 
 t_sprite	*create_sprite(t_data *data, char *file_name)
 {
-	t_sprite	*tex;
+	t_sprite	*sprite;
 
-	tex = malloc(sizeof(t_sprite));
-	if (!tex)
+	sprite = malloc(sizeof(t_sprite));
+	if (!sprite)
 		return (NULL);
-	tex->xpm_ptr = mlx_xpm_file_to_image(data->mlx_ptr, file_name, &tex->width,
-			&tex->height);
-	if (!tex->xpm_ptr)
+	sprite->xpm_ptr = mlx_xpm_file_to_image(data->mlx_ptr, file_name, &sprite->width,
+			&sprite->height);
+	if (!sprite->xpm_ptr)
 		return (close_window(data), NULL);
-	tex->addr = mlx_get_data_addr(tex->xpm_ptr, &tex->bpp, &tex->line_len,
-			&tex->endian);
-	tex->mlx_ptr = data->mlx_ptr;
-	tex->win_ptr = data->win_ptr;
-	ft_lstadd_back(&data->tex_ptrs, ft_lstnew(tex));
-	return (tex);
+	sprite->addr = mlx_get_data_addr(sprite->xpm_ptr, &sprite->bpp, &sprite->line_len,
+			&sprite->endian);
+	sprite->mlx_ptr = data->mlx_ptr;
+	sprite->win_ptr = data->win_ptr;
+	ft_lstadd_back(&data->sprite_ptrs, ft_lstnew(sprite));
+	return (sprite);
 }
 
 void	free_sprites(t_data *data)
 {
-	ft_lstclear(&data->tex_ptrs, (void *)free_sprite);
-	data->tex_ptrs = NULL;
+	ft_lstclear(&data->sprite_ptrs, (void *)free_sprite);
+	data->sprite_ptrs = NULL;
 }
 
-void	*free_sprite(t_sprite *tex)
+void	*free_sprite(t_sprite *sprite)
 {
-	if (tex->xpm_ptr)
-		mlx_destroy_image(tex->mlx_ptr, tex->xpm_ptr);
-	free(tex);
-	tex = NULL;
+	if (sprite->xpm_ptr)
+		mlx_destroy_image(sprite->mlx_ptr, sprite->xpm_ptr);
+	free(sprite);
+	sprite = NULL;
 	return (NULL);
 }
