@@ -6,7 +6,7 @@
 /*   By: muabdi <muabdi@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 16:55:45 by muabdi            #+#    #+#             */
-/*   Updated: 2024/06/12 21:30:54 by muabdi           ###   ########.fr       */
+/*   Updated: 2024/06/13 14:52:24 by muabdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ t_map	*create_map_grid(char *file_path)
 	map = allocate_map_grid(fd);
 	if (!map)
 		handle_error(NULL, "Unable to allocate map grid");
-	if (!validate_map_grid(map->grid))
+	if (!validate_map_grid(map))
 	{
 		cleanup_map(map);
 		handle_error(NULL, "Invalid map");
@@ -75,8 +75,9 @@ static t_map	*allocate_map_grid(int fd)
 				sizeof(char *) * (map->rows + 1),
 				sizeof(char *) * map->rows);
 		map->grid[map->rows] = line;
-		map->rows++;
 		line = get_next_line(fd);
+		if (line)
+			map->rows++;
 	}
 	return (map);
 }

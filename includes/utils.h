@@ -6,7 +6,7 @@
 /*   By: muabdi <muabdi@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 17:37:38 by muabdi            #+#    #+#             */
-/*   Updated: 2024/06/11 21:26:11 by muabdi           ###   ########.fr       */
+/*   Updated: 2024/06/13 16:42:45 by muabdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,15 @@
 # include <X11/X.h>
 # include <stdlib.h>
 # include <stdbool.h>
+# include <time.h>
 
 // Releated headers
 
 # include "../libs/minilibx-linux/mlx.h"
+
+// Macro declarations
+
+# define FIXED_DELTA_TIME 0.0167 // 60 FPS
 
 // Struct declarations
 
@@ -69,6 +74,9 @@ typedef struct s_data
 	void			*win_ptr;
 	int				height;
 	int				width;
+
+	clock_t			last_time;
+	double			delta_time;
 
 	void			(*error_handler)(void *);
 }					t_data;

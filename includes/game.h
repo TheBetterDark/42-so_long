@@ -6,7 +6,7 @@
 /*   By: muabdi <muabdi@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 17:47:05 by muabdi            #+#    #+#             */
-/*   Updated: 2024/06/12 21:20:50 by muabdi           ###   ########.fr       */
+/*   Updated: 2024/06/13 16:46:04 by muabdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 // Releated headers
 
 # include "./utils.h"
+# include <math.h>
 
 // Enum declarations
 
@@ -44,6 +45,8 @@ typedef enum e_direction
 # define KEY_S 115
 # define KEY_D 100
 
+# define PLAYER_SPEED 500
+
 // Struct declarations
 
 typedef struct s_animation
@@ -53,12 +56,22 @@ typedef struct s_animation
 	t_image					*step_3;
 }							t_animation;
 
+typedef struct s_tile
+{
+	t_image					*sprite;
+	t_vector2				position;
+}							t_tile;
+
 typedef struct s_map
 {
 	char					**grid;
-
 	int						rows;
 	int						columns;
+
+	t_list					*empty_tiles;
+	t_list					*wall_tiles;
+	t_list					*collectable_tiles;
+	t_list					*exit_tiles;
 }							t_map;
 
 typedef struct s_player_sprites
@@ -86,7 +99,7 @@ typedef struct s_game
 	t_data					*data;
 	t_player				*player;
 	t_image					*background;
-	char					**map;
+	t_map					*map;
 
 	t_image					*test_tex;
 
@@ -99,13 +112,12 @@ t_game				*initalize_game(void);
 int					handle_error(t_game *game, char *info);
 
 t_map				*create_map_grid(char *file_path);
-int					validate_map_grid(char **grid);
+bool				validate_map_grid(t_map *map);
 
 t_player			*create_player(t_game *game, t_vector2 spawn_pos);
 void				animate_player(t_player *player, t_animation *animation);
 void				handle_player_event(int key_code, t_game *game);
 t_player_sprites	*load_player_sprites(t_data *data);
-void				render_player(t_game *game);
 
 bool				check_player_collisions(t_game *game, t_vector2 direction);
 
@@ -114,12 +126,11 @@ void				*player_move_down(int key_code, t_game *game);
 void				*player_move_left(int key_code, t_game *game);
 void				*player_move_right(int key_code, t_game *game);
 
-void				cleanup_events(t_event **events);
 void				cleanup_sprites(t_player_sprites *sprites);
+void				cleanup_events(t_event **events);
 void				cleanup_player(t_player *player);
 void				cleanup_map(t_map *map);
 
-void				render_background(t_game *game, int colour);
 int					render_loop(t_game *game);
 
 #endif
