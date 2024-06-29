@@ -6,7 +6,7 @@
 /*   By: muabdi <muabdi@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 17:47:05 by muabdi            #+#    #+#             */
-/*   Updated: 2024/06/26 22:20:42 by muabdi           ###   ########.fr       */
+/*   Updated: 2024/06/29 19:50:15 by muabdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include <stdbool.h>
+# include <time.h>
 # include <math.h>
 
 // External libraries
@@ -58,9 +60,9 @@ typedef enum e_direction
 # define KEY_S 115
 # define KEY_D 100
 
-# define TILE_SIZE 16 // 16px
+# define PLAYER_SPEED 8
 
-# define PLAYER_SPEED 1
+# define TILE_SIZE 64 // 64px
 
 // Struct declarations
 
@@ -82,6 +84,10 @@ typedef struct s_map
 	char					**grid;
 	int						rows;
 	int						columns;
+
+	int						collectable_count;
+	t_vector2				spawn_pos;
+	t_vector2				exit_pos;
 
 	t_list					*empty_tiles;
 	t_list					*wall_tiles;
@@ -127,7 +133,11 @@ t_game				*initalize_game(void);
 int					handle_error(t_game *game, char *info);
 
 t_map				*create_map_grid(char *file_path);
-bool				validate_map_grid(t_map *map);
+bool				validate_map_borders(t_map *map);
+bool				validate_map_components(t_map *map);
+bool				validate_map_path(t_map *map);
+bool				validate_map_size(t_map *map);
+bool				find_path(t_map *map, t_vector2 start, t_vector2 end);
 
 t_player			*create_player(t_game *game, t_vector2 spawn_pos);
 void				animate_player(t_player *player, t_animation *animation);

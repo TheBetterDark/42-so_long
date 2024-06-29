@@ -6,14 +6,12 @@
 /*   By: muabdi <muabdi@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 15:54:45 by muabdi            #+#    #+#             */
-/*   Updated: 2024/06/11 21:24:16 by muabdi           ###   ########.fr       */
+/*   Updated: 2024/06/28 20:48:11 by muabdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ASSETS_H
 # define ASSETS_H
-
-# define TILE_SIZE 16
 
 // Collectable
 

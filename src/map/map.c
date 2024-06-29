@@ -6,15 +6,15 @@
 /*   By: muabdi <muabdi@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 16:55:45 by muabdi            #+#    #+#             */
-/*   Updated: 2024/06/26 23:19:31 by muabdi           ###   ########.fr       */
+/*   Updated: 2024/06/29 20:06:32 by muabdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/game.h"
 
 static t_map	*allocate_map_grid(int fd);
-static int		open_file(char *file_path);
-static int		close_file(int fd);
+static t_map	*read_map(t_map *map, int fd);
+static bool		validate_map_grid(t_map *map);
 
 t_map	*create_map_grid(char *file_path)
 {
@@ -59,22 +59,42 @@ void	cleanup_map(t_map *map)
 static t_map	*allocate_map_grid(int fd)
 {
 	t_map	*map;
-	char	*line;
 
 	map = malloc(sizeof(t_map));
 	if (!map)
 		return (NULL);
+	map = read_map(map, fd);
+	if (!map)
+		return (NULL);
+	map->collectable_count = 0;
+	map->spawn_pos = (t_vector2){-1, -1};
+	map->exit_pos = (t_vector2){-1, -1};
+	map->empty_tiles = NULL;
+	map->wall_tiles = NULL;
+	map->collectable_tiles = NULL;
+	map->exit_tiles = NULL;
+	return (map);
+}
+
+static t_map	*read_map(t_map *map, int fd)
+{
+	char	*line;
+
+	if (!map || fd < 0)
+		return (NULL);
 	line = get_next_line(fd);
 	if (!line)
 		return (free(line), NULL);
-	map->grid = NULL;
 	map->columns = ft_strlen(line) - 1;
 	map->rows = 0;
+	map->grid = NULL;
 	while (line)
 	{
 		map->grid = ft_realloc((void *)map->grid,
 				sizeof(char *) * map->rows,
 				sizeof(char *) * (map->rows + 1));
+		if (!map->grid)
+			return (free(map), NULL);
 		map->grid[map->rows] = line;
 		line = get_next_line(fd);
 		map->rows++;
@@ -82,17 +102,15 @@ static t_map	*allocate_map_grid(int fd)
 	return (map);
 }
 
-static int	open_file(char *file_path)
+static bool	validate_map_grid(t_map *map)
 {
-	int	fd;
-
-	fd = open(file_path, O_RDONLY);
-	return (fd);
-}
-
-static int	close_file(int fd)
-{
-	if (close(fd) < 0)
-		return (-1);
-	return (1);
+	if (!validate_map_borders(map))
+		return (false);
+	if (!validate_map_components(map))
+		return (false);
+	if (!validate_map_size(map))
+		return (false);
+	if (!validate_map_path(map))
+		return (false);
+	return (true);
 }

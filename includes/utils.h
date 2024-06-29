@@ -6,7 +6,7 @@
 /*   By: muabdi <muabdi@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 17:37:38 by muabdi            #+#    #+#             */
-/*   Updated: 2024/06/26 14:38:31 by muabdi           ###   ########.fr       */
+/*   Updated: 2024/06/29 19:08:26 by muabdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,5 +97,8 @@ int			create_rgb(int r, int g, int b);
 int			get_r(int rgb);
 int			get_g(int rgb);
 int			get_b(int rgb);
+
+int			open_file(char *file_path);
+int			close_file(int fd);
 
 #endif
