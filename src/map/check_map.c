@@ -99,9 +99,9 @@ static t_map	*find_start_end(t_map *map)
 		while (current_pos.x < map->columns)
 		{
 			if (map->grid[current_pos.y][current_pos.x] == SPAWN)
-				map->spawn_pos = (t_vector2){current_pos.y, current_pos.x};
+				map->spawn_pos = (t_vector2){current_pos.x, current_pos.y};
 			if (map->grid[current_pos.y][current_pos.x] == EXIT)
-				map->exit_pos = (t_vector2){current_pos.y, current_pos.x};
+				map->exit_pos = (t_vector2){current_pos.x, current_pos.y};
 			current_pos.x++;
 		}
 		current_pos.y++;
