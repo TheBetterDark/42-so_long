@@ -6,7 +6,7 @@
 /*   By: muabdi <muabdi@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 19:24:08 by muabdi            #+#    #+#             */
-/*   Updated: 2024/06/28 20:38:49 by muabdi           ###   ########.fr       */
+/*   Updated: 2024/07/01 12:53:03 by muabdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,12 @@ t_game	*initalize_game(void)
 			game->map->rows * TILE_SIZE, "so_long", handle_error);
 	if (!game->data->mlx_ptr || !game->data->win_ptr)
 		handle_error(game, "Memory Allocation Failure");
-	game->player = create_player(game, (t_vector2){0, 0});
-	game->test_tex = load_texture(game->data, MAP_WALL);
+	game->collectable_tex = load_texture(game->data, DOT);
+	game->background_tex = create_image(game->data, TILE_SIZE, TILE_SIZE);
+	game->exit_tex = load_texture(game->data, BIG_DOT);
+	game->wall_tex = load_texture(game->data, MAP_WALL);
+	game->player = create_player(game, map->spawn_pos);
+	ft_printf("Player Spawn: (%d, %d)\n", map->spawn_pos.x, map->spawn_pos.y);
 	game->stop_render = false;
 	return (game);
 }

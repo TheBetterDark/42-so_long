@@ -69,10 +69,6 @@ static t_map	*allocate_map_grid(int fd)
 	map->collectable_count = 0;
 	map->spawn_pos = (t_vector2){-1, -1};
 	map->exit_pos = (t_vector2){-1, -1};
-	map->empty_tiles = NULL;
-	map->wall_tiles = NULL;
-	map->collectable_tiles = NULL;
-	map->exit_tiles = NULL;
 	return (map);
 }
 

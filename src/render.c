@@ -6,14 +6,14 @@
 /*   By: muabdi <muabdi@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 19:41:50 by muabdi            #+#    #+#             */
-/*   Updated: 2024/06/26 16:14:23 by muabdi           ###   ########.fr       */
+/*   Updated: 2024/07/01 13:13:32 by muabdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/game.h"
 
-static void	render_game_image(t_game *game);
-static void	render_player(t_game *game);
+static void	render_sprites(t_game *game);
+static void	render_static(t_game *game);
 
 int	render_loop(t_game *game)
 {
@@ -35,31 +35,44 @@ int	render_loop(t_game *game)
 		fps = frame_count / game->data->delta_time;
 		last_fps_update = current_time;
 		frame_count = 0;
-		render_game_image(game);
+		mlx_clear_window(game->data->mlx_ptr, game->data->win_ptr);
+		render_static(game);
+		render_sprites(game);
 	}
 	return (0);
 }
 
-static void	render_game_image(t_game *game)
+static void	render_static(t_game *game)
 {
-	if (game->player->has_changed)
+	t_vector2	curr_pos;
+
+	curr_pos.y = 0;
+	while (curr_pos.y < game->map->rows)
 	{
-		mlx_clear_window(game->data->mlx_ptr, game->data->win_ptr);
-		render_player(game);
-		mlx_put_image_to_window(game->data->mlx_ptr, game->data->win_ptr,
-			game->test_tex->img_ptr, 96, 96);
+		curr_pos.x = 0;
+		while (curr_pos.x < game->map->columns)
+		{
+			if (game->map->grid[curr_pos.y][curr_pos.x] == WALL)
+				mlx_put_image_to_window(game->data->mlx_ptr,
+					game->data->win_ptr, game->wall_tex->img_ptr,
+					curr_pos.x * TILE_SIZE, curr_pos.y * TILE_SIZE);
+			else if (game->map->grid[curr_pos.y][curr_pos.x] == COLLECTABLE)
+				mlx_put_image_to_window(game->data->mlx_ptr,
+					game->data->win_ptr, game->collectable_tex->img_ptr,
+					curr_pos.x * TILE_SIZE, curr_pos.y * TILE_SIZE);
+			else if (game->map->grid[curr_pos.y][curr_pos.x] == EXIT)
+				mlx_put_image_to_window(game->data->mlx_ptr,
+					game->data->win_ptr, game->exit_tex->img_ptr,
+					curr_pos.x * TILE_SIZE, curr_pos.y * TILE_SIZE);
+			curr_pos.x++;
+		}
+		curr_pos.y++;
 	}
 }
 
-static void	render_player(t_game *game)
+static void	render_sprites(t_game *game)
 {
-	t_player	*player;
-
-	player = game->player;
-	if (!player)
-		return ;
 	mlx_put_image_to_window(game->data->mlx_ptr, game->data->win_ptr,
-		player->current_image->img_ptr, player->position.x,
-		player->position.y);
-	player->has_changed = false;
+		game->player->current_image->img_ptr, game->player->position.x,
+		game->player->position.y);
 }

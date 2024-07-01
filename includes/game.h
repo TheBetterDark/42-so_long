@@ -6,7 +6,7 @@
 /*   By: muabdi <muabdi@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 17:47:05 by muabdi            #+#    #+#             */
-/*   Updated: 2024/06/30 21:22:40 by muabdi           ###   ########.fr       */
+/*   Updated: 2024/07/01 12:51:38 by muabdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ typedef enum e_direction
 # define KEY_S 115
 # define KEY_D 100
 
-# define PLAYER_SPEED 8
+# define PLAYER_SPEED 4
 
 # define TILE_SIZE 16 // 64px
 
@@ -88,11 +88,6 @@ typedef struct s_map
 	int						collectable_count;
 	t_vector2				spawn_pos;
 	t_vector2				exit_pos;
-
-	t_list					*empty_tiles;
-	t_list					*wall_tiles;
-	t_list					*collectable_tiles;
-	t_list					*exit_tiles;
 }							t_map;
 
 typedef struct s_player_sprites
@@ -119,10 +114,12 @@ typedef struct s_game
 {
 	t_data					*data;
 	t_player				*player;
-	t_image					*background;
 	t_map					*map;
 
-	t_image					*test_tex;
+	t_image					*collectable_tex;
+	t_image					*background_tex;
+	t_image					*exit_tex;
+	t_image					*wall_tex;
 
 	bool					stop_render;
 }							t_game;
