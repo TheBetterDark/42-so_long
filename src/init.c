@@ -6,7 +6,7 @@
 /*   By: muabdi <muabdi@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 19:24:08 by muabdi            #+#    #+#             */
-/*   Updated: 2024/07/01 12:53:03 by muabdi           ###   ########.fr       */
+/*   Updated: 2024/07/01 14:45:49 by muabdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ t_game	*initalize_game(void)
 	game->exit_tex = load_texture(game->data, BIG_DOT);
 	game->wall_tex = load_texture(game->data, MAP_WALL);
 	game->player = create_player(game, map->spawn_pos);
-	ft_printf("Player Spawn: (%d, %d)\n", map->spawn_pos.x, map->spawn_pos.y);
 	game->stop_render = false;
 	return (game);
 }

@@ -6,7 +6,7 @@
 /*   By: muabdi <muabdi@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 19:41:50 by muabdi            #+#    #+#             */
-/*   Updated: 2024/07/01 13:13:32 by muabdi           ###   ########.fr       */
+/*   Updated: 2024/07/01 18:00:00 by muabdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ int	render_loop(t_game *game)
 		last_fps_update = current_time;
 		frame_count = 0;
 		mlx_clear_window(game->data->mlx_ptr, game->data->win_ptr);
+		player_move(game);
 		render_static(game);
 		render_sprites(game);
 	}

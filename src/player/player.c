@@ -6,7 +6,7 @@
 /*   By: muabdi <muabdi@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 15:49:47 by muabdi            #+#    #+#             */
-/*   Updated: 2024/07/01 12:59:49 by muabdi           ###   ########.fr       */
+/*   Updated: 2024/07/01 18:13:16 by muabdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,13 @@ t_player	*create_player(t_game *game, t_vector2 spawn_pos)
 		handle_error(game, "Unable to allocate memory for 'player' struct");
 	player->sprites = load_player_sprites(game->data);
 	player->current_image = player->sprites->player_left->step_1;
-	player->events[0] = connect_event(KEY_W, player_move_up);
-	player->events[1] = connect_event(KEY_S, player_move_down);
-	player->events[2] = connect_event(KEY_A, player_move_left);
-	player->events[3] = connect_event(KEY_D, player_move_right);
+	player->events[0] = connect_event(KEY_W, move_player_event);
+	player->events[1] = connect_event(KEY_S, move_player_event);
+	player->events[2] = connect_event(KEY_A, move_player_event);
+	player->events[3] = connect_event(KEY_D, move_player_event);
 	player->position = (t_vector2){spawn_pos.x * TILE_SIZE, spawn_pos.y
 		* TILE_SIZE};
+	player->velocity = (t_vector2){0, 0};
 	player->animation_step = 1;
 	player->move_count = 0;
 	player->has_changed = true;
@@ -37,7 +38,6 @@ t_player	*create_player(t_game *game, t_vector2 spawn_pos)
 	return (player);
 }
 
-// TODO: Make this into a util (loading animations into the struct)
 t_player_sprites	*load_player_sprites(t_data *data)
 {
 	t_player_sprites	*sprites;
@@ -100,4 +100,18 @@ void	handle_player_event(int key_code, t_game *game)
 		}
 		i++;
 	}
+}
+
+void	move_player_event(int key_code, t_game *game)
+{
+	if (!game->player)
+		return ;
+	if (key_code == KEY_W)
+		game->player->velocity = (t_vector2){0, -1};
+	else if (key_code == KEY_S)
+		game->player->velocity = (t_vector2){0, 1};
+	else if (key_code == KEY_A)
+		game->player->velocity = (t_vector2){-1, 0};
+	else if (key_code == KEY_D)
+		game->player->velocity = (t_vector2){1, 0};
 }
