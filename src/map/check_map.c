@@ -6,7 +6,7 @@
 /*   By: muabdi <muabdi@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 17:48:23 by muabdi            #+#    #+#             */
-/*   Updated: 2024/06/29 20:13:59 by muabdi           ###   ########.fr       */
+/*   Updated: 2024/07/01 18:30:32 by muabdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,25 +39,30 @@ bool	validate_map_borders(t_map *map)
 
 bool	validate_map_components(t_map *map)
 {
-	int	spawn_count;
-	int	exit_count;
-	int	i;
+	int			spawn_count;
+	int			exit_count;
+	int			y;
+	int			x;
 
 	spawn_count = 0;
 	exit_count = 0;
-	i = 0;
-	while (i < map->rows)
+	y = 0;
+	while (y < map->rows)
 	{
-		if (ft_strchr(map->grid[i], COLLECTABLE))
-			map->collectable_count++;
-		if (ft_strchr(map->grid[i], SPAWN))
-			spawn_count++;
-		if (ft_strchr(map->grid[i], EXIT))
-			exit_count++;
-		i++;
+		x = 0;
+		while (x < map->columns)
+		{
+			if (map->grid[y][x] == COLLECTABLE)
+				map->collectable_count++;
+			if (map->grid[y][x] == SPAWN)
+				spawn_count++;
+			if (map->grid[y][x] == EXIT)
+				exit_count++;
+			x++;
+		}
+		y++;
 	}
-	return (map->collectable_count >= 1 && exit_count == 1
-		&& spawn_count == 1);
+	return (map->collectable_count >= 1 && exit_count == 1 && spawn_count == 1);
 }
 
 bool	validate_map_path(t_map *map)
