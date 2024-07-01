@@ -6,7 +6,7 @@
 /*   By: muabdi <muabdi@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 19:48:31 by muabdi            #+#    #+#             */
-/*   Updated: 2024/07/01 18:00:50 by muabdi           ###   ########.fr       */
+/*   Updated: 2024/07/01 18:48:23 by muabdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,14 @@
 static int	on_key_event(int key_code, t_game *game);
 static int	cleanup_game(t_game *game);
 
-int	main(void)
+int	main(int argc, char *argv[])
 {
 	t_game	*game;
 
-	game = initalize_game();
+	if (argc != 2)
+		handle_error(NULL,
+			"Invalid parameter.\nUsage: so_long \"file_name.ber\"\n");
+	game = initalize_game(argv[1]);
 	if (!game)
 		cleanup_game(game);
 	mlx_hook(game->data->win_ptr, KeyPress, KeyPressMask, on_key_event, game);

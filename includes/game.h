@@ -6,7 +6,7 @@
 /*   By: muabdi <muabdi@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 17:47:05 by muabdi            #+#    #+#             */
-/*   Updated: 2024/07/01 16:56:01 by muabdi           ###   ########.fr       */
+/*   Updated: 2024/07/01 18:39:44 by muabdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,7 +128,7 @@ typedef struct s_game
 
 // Function declarations
 
-t_game				*initalize_game(void);
+t_game				*initalize_game(char *file_name);
 int					handle_error(t_game *game, char *info);
 
 t_map				*create_map_grid(char *file_path);

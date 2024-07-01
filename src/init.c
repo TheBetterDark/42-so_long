@@ -6,19 +6,19 @@
 /*   By: muabdi <muabdi@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 19:24:08 by muabdi            #+#    #+#             */
-/*   Updated: 2024/07/01 18:20:24 by muabdi           ###   ########.fr       */
+/*   Updated: 2024/07/01 18:39:28 by muabdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/game.h"
 #include "../includes/assets.h"
 
-t_game	*initalize_game(void)
+t_game	*initalize_game(char *file_name)
 {
 	t_game	*game;
 	t_map	*map;
 
-	map = create_map_grid("./assets/maps/test2.ber");
+	map = create_map_grid(file_name);
 	game = malloc(sizeof(t_game));
 	if (!game)
 		handle_error(game, "Memory Allocation Failure");
