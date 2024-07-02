@@ -6,7 +6,7 @@
 /*   By: muabdi <muabdi@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 17:47:05 by muabdi            #+#    #+#             */
-/*   Updated: 2024/07/01 18:39:44 by muabdi           ###   ########.fr       */
+/*   Updated: 2024/07/02 16:57:28 by muabdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,9 @@ typedef struct s_map
 	int						columns;
 
 	int						collectable_count;
+	int						spawn_count;
+	int						exit_count;
+
 	t_vector2				spawn_pos;
 	t_vector2				exit_pos;
 }							t_map;

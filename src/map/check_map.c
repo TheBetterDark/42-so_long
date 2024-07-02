@@ -6,7 +6,7 @@
 /*   By: muabdi <muabdi@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 17:48:23 by muabdi            #+#    #+#             */
-/*   Updated: 2024/07/02 15:36:16 by muabdi           ###   ########.fr       */
+/*   Updated: 2024/07/02 16:58:55 by muabdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,30 +39,29 @@ bool	validate_map_borders(t_map *map)
 
 bool	validate_map_components(t_map *map)
 {
-	int			spawn_count;
-	int			exit_count;
-	int			y;
-	int			x;
+	t_vector2	pos;
 
-	spawn_count = 0;
-	exit_count = 0;
-	y = 0;
-	while (y < map->rows)
+	pos.y = 0;
+	while (pos.y < map->rows)
 	{
-		x = 0;
-		while (x < map->columns)
+		pos.x = 0;
+		while (pos.x < map->columns)
 		{
-			if (map->grid[y][x] == COLLECTABLE)
+			if (map->grid[pos.y][pos.x] == COLLECTABLE)
 				map->collectable_count++;
-			else if (map->grid[y][x] == SPAWN)
-				spawn_count++;
-			else if (map->grid[y][x] == EXIT)
-				exit_count++;
-			x++;
+			else if (map->grid[pos.y][pos.x] == SPAWN)
+				map->spawn_count++;
+			else if (map->grid[pos.y][pos.x] == EXIT)
+				map->exit_count++;
+			else if (map->grid[pos.y][pos.x] != WALL
+					&& map->grid[pos.y][pos.x] != EMPTY)
+				return (false);
+			pos.x++;
 		}
-		y++;
+		pos.y++;
 	}
-	return (map->collectable_count >= 1 && exit_count == 1 && spawn_count == 1);
+	return (map->collectable_count >= 1 && map->exit_count == 1
+		&& map->spawn_count == 1);
 }
 
 bool	validate_map_path(t_map *map)
@@ -95,21 +94,21 @@ bool	validate_map_size(t_map *map)
 
 static t_map	*find_start_end(t_map *map)
 {
-	t_vector2	current_pos;
+	t_vector2	pos;
 
-	current_pos.y = 0;
-	while (current_pos.y < map->rows)
+	pos.y = 0;
+	while (pos.y < map->rows)
 	{
-		current_pos.x = 0;
-		while (current_pos.x < map->columns)
+		pos.x = 0;
+		while (pos.x < map->columns)
 		{
-			if (map->grid[current_pos.y][current_pos.x] == SPAWN)
-				map->spawn_pos = (t_vector2){current_pos.x, current_pos.y};
-			if (map->grid[current_pos.y][current_pos.x] == EXIT)
-				map->exit_pos = (t_vector2){current_pos.x, current_pos.y};
-			current_pos.x++;
+			if (map->grid[pos.y][pos.x] == SPAWN)
+				map->spawn_pos = (t_vector2){pos.x, pos.y};
+			if (map->grid[pos.y][pos.x] == EXIT)
+				map->exit_pos = (t_vector2){pos.x, pos.y};
+			pos.x++;
 		}
-		current_pos.y++;
+		pos.y++;
 	}
 	return (map);
 }

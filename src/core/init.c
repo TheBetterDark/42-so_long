@@ -6,18 +6,22 @@
 /*   By: muabdi <muabdi@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 19:24:08 by muabdi            #+#    #+#             */
-/*   Updated: 2024/07/02 15:37:49 by muabdi           ###   ########.fr       */
+/*   Updated: 2024/07/02 17:43:36 by muabdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/game.h"
 #include "../../includes/assets.h"
 
+static bool	validate_file_type(char *file_name);
+
 t_game	*initalize_game(char *file_name)
 {
 	t_game	*game;
 	t_map	*map;
 
+	if (!validate_file_type(file_name))
+		handle_error(NULL, "Invalid File Type");
 	map = create_map_grid(file_name);
 	game = malloc(sizeof(t_game));
 	if (!game)
@@ -34,4 +38,13 @@ t_game	*initalize_game(char *file_name)
 	game->player = create_player(game, map->spawn_pos);
 	game->stop_render = false;
 	return (game);
+}
+
+static bool	validate_file_type(char *file_name)
+{
+	const int	size = ft_strlen(file_name);
+
+	if (ft_strnstr(&file_name[size - 4], ".ber", size))
+		return (true);
+	return (false);
 }

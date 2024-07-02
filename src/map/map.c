@@ -6,7 +6,7 @@
 /*   By: muabdi <muabdi@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 16:55:45 by muabdi            #+#    #+#             */
-/*   Updated: 2024/06/29 20:06:32 by muabdi           ###   ########.fr       */
+/*   Updated: 2024/07/02 16:58:05 by muabdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,8 @@ static t_map	*allocate_map_grid(int fd)
 	if (!map)
 		return (NULL);
 	map->collectable_count = 0;
+	map->spawn_count = 0;
+	map->exit_count = 0;
 	map->spawn_pos = (t_vector2){-1, -1};
 	map->exit_pos = (t_vector2){-1, -1};
 	return (map);
