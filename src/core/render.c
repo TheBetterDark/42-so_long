@@ -6,7 +6,7 @@
 /*   By: muabdi <muabdi@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 19:41:50 by muabdi            #+#    #+#             */
-/*   Updated: 2024/07/02 15:38:01 by muabdi           ###   ########.fr       */
+/*   Updated: 2024/07/02 19:00:05 by muabdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,9 +62,10 @@ static void	render_static(t_game *game)
 					game->data->win_ptr, game->collectable_tex->img_ptr,
 					curr_pos.x * TILE_SIZE, curr_pos.y * TILE_SIZE);
 			else if (game->map->grid[curr_pos.y][curr_pos.x] == EXIT)
-				mlx_put_image_to_window(game->data->mlx_ptr,
-					game->data->win_ptr, game->exit_tex->img_ptr,
-					curr_pos.x * TILE_SIZE, curr_pos.y * TILE_SIZE);
+				if (game->map->collectable_count < 1)
+					mlx_put_image_to_window(game->data->mlx_ptr,
+						game->data->win_ptr, game->exit_tex->img_ptr,
+						curr_pos.x * TILE_SIZE, curr_pos.y * TILE_SIZE);
 			curr_pos.x++;
 		}
 		curr_pos.y++;

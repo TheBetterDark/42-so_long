@@ -6,14 +6,13 @@
 /*   By: muabdi <muabdi@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 19:48:31 by muabdi            #+#    #+#             */
-/*   Updated: 2024/07/02 15:37:55 by muabdi           ###   ########.fr       */
+/*   Updated: 2024/07/02 18:38:52 by muabdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/game.h"
 
 static int	on_key_event(int key_code, t_game *game);
-static int	cleanup_game(t_game *game);
 
 int	main(int argc, char *argv[])
 {
@@ -41,19 +40,4 @@ static int	on_key_event(int key_code, t_game *game)
 		return (cleanup_game(game), 1);
 	handle_player_event(key_code, game);
 	return (0);
-}
-
-static int	cleanup_game(t_game *game)
-{
-	if (!game)
-		return (handle_error(game, "Unable to free game"), EXIT_FAILURE);
-	cleanup_player(game->player);
-	clear_image(game->collectable_tex);
-	clear_image(game->background_tex);
-	clear_image(game->exit_tex);
-	clear_image(game->wall_tex);
-	cleanup_map(game->map);
-	close_window(game->data);
-	free(game);
-	return (exit(EXIT_SUCCESS), EXIT_SUCCESS);
 }

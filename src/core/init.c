@@ -6,7 +6,7 @@
 /*   By: muabdi <muabdi@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 19:24:08 by muabdi            #+#    #+#             */
-/*   Updated: 2024/07/02 17:43:36 by muabdi           ###   ########.fr       */
+/*   Updated: 2024/07/02 18:39:06 by muabdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,21 @@ t_game	*initalize_game(char *file_name)
 	game->player = create_player(game, map->spawn_pos);
 	game->stop_render = false;
 	return (game);
+}
+
+int	cleanup_game(t_game *game)
+{
+	if (!game)
+		return (handle_error(game, "Unable to free game"), EXIT_FAILURE);
+	cleanup_player(game->player);
+	clear_image(game->collectable_tex);
+	clear_image(game->background_tex);
+	clear_image(game->exit_tex);
+	clear_image(game->wall_tex);
+	cleanup_map(game->map);
+	close_window(game->data);
+	free(game);
+	return (exit(EXIT_SUCCESS), EXIT_SUCCESS);
 }
 
 static bool	validate_file_type(char *file_name)
