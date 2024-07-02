@@ -6,7 +6,7 @@
 /*   By: muabdi <muabdi@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 15:49:47 by muabdi            #+#    #+#             */
-/*   Updated: 2024/07/01 18:13:16 by muabdi           ###   ########.fr       */
+/*   Updated: 2024/07/02 15:33:33 by muabdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,8 @@ t_player_sprites	*load_player_sprites(t_data *data)
 void	animate_player(t_player *player, t_animation *animation)
 {
 	if (!player || !animation)
+		return ;
+	if (player->move_count % 2 != 0)
 		return ;
 	player->animation_step++;
 	if (player->animation_step >= 3)
