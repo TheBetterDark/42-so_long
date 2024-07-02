@@ -6,7 +6,7 @@
 /*   By: muabdi <muabdi@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 17:47:05 by muabdi            #+#    #+#             */
-/*   Updated: 2024/07/02 18:39:43 by muabdi           ###   ########.fr       */
+/*   Updated: 2024/07/02 19:18:46 by muabdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdbool.h>
-# include <time.h>
 # include <math.h>
 
 // External libraries

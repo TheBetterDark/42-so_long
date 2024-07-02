@@ -6,7 +6,7 @@
 /*   By: muabdi <muabdi@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 18:16:35 by muabdi            #+#    #+#             */
-/*   Updated: 2024/06/26 14:36:36 by muabdi           ###   ########.fr       */
+/*   Updated: 2024/07/02 19:18:59 by muabdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,6 @@ t_data	*open_window(int width, int height, char *title, void *f)
 		return (close_window(data), NULL);
 	data->height = height;
 	data->width = width;
-	data->last_time = clock();
-	data->delta_time = 0.0;
 	return (data);
 }
 
