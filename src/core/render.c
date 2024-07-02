@@ -6,11 +6,11 @@
 /*   By: muabdi <muabdi@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 19:41:50 by muabdi            #+#    #+#             */
-/*   Updated: 2024/07/01 18:00:00 by muabdi           ###   ########.fr       */
+/*   Updated: 2024/07/02 15:38:01 by muabdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/game.h"
+#include "../../includes/game.h"
 
 static void	render_sprites(t_game *game);
 static void	render_static(t_game *game);

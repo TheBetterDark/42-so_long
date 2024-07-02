@@ -6,11 +6,11 @@
 /*   By: muabdi <muabdi@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 19:48:31 by muabdi            #+#    #+#             */
-/*   Updated: 2024/07/01 18:48:23 by muabdi           ###   ########.fr       */
+/*   Updated: 2024/07/02 15:37:55 by muabdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/game.h"
+#include "../../includes/game.h"
 
 static int	on_key_event(int key_code, t_game *game);
 static int	cleanup_game(t_game *game);

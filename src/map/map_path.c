@@ -6,7 +6,7 @@
 /*   By: muabdi <muabdi@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 21:13:04 by muabdi            #+#    #+#             */
-/*   Updated: 2024/07/01 18:31:22 by muabdi           ###   ########.fr       */
+/*   Updated: 2024/07/02 15:36:57 by muabdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ bool	find_path(t_map *map, t_vector2 start, t_vector2 end)
 	bool		result;
 	int			i;
 
-	collectables = get_collectables(map);
+collectables = get_collectables(map);
 	if (!collectables)
 		return (NULL);
 	i = 0;

@@ -6,11 +6,11 @@
 /*   By: muabdi <muabdi@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 20:29:53 by muabdi            #+#    #+#             */
-/*   Updated: 2024/06/26 14:43:08 by muabdi           ###   ########.fr       */
+/*   Updated: 2024/07/02 15:37:33 by muabdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/game.h"
+#include "../../includes/game.h"
 
 int	handle_error(t_game *game, char *info)
 {

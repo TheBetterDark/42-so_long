@@ -6,12 +6,12 @@
 /*   By: muabdi <muabdi@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 19:24:08 by muabdi            #+#    #+#             */
-/*   Updated: 2024/07/01 18:39:28 by muabdi           ###   ########.fr       */
+/*   Updated: 2024/07/02 15:37:49 by muabdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/game.h"
-#include "../includes/assets.h"
+#include "../../includes/game.h"
+#include "../../includes/assets.h"
 
 t_game	*initalize_game(char *file_name)
 {

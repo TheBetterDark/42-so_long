@@ -6,7 +6,7 @@
 /*   By: muabdi <muabdi@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 17:48:23 by muabdi            #+#    #+#             */
-/*   Updated: 2024/07/01 18:30:32 by muabdi           ###   ########.fr       */
+/*   Updated: 2024/07/02 15:36:16 by muabdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,9 @@ bool	validate_map_components(t_map *map)
 		{
 			if (map->grid[y][x] == COLLECTABLE)
 				map->collectable_count++;
-			if (map->grid[y][x] == SPAWN)
+			else if (map->grid[y][x] == SPAWN)
 				spawn_count++;
-			if (map->grid[y][x] == EXIT)
+			else if (map->grid[y][x] == EXIT)
 				exit_count++;
 			x++;
 		}
