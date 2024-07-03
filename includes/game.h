@@ -6,7 +6,7 @@
 /*   By: muabdi <muabdi@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 17:47:05 by muabdi            #+#    #+#             */
-/*   Updated: 2024/07/03 14:48:40 by muabdi           ###   ########.fr       */
+/*   Updated: 2024/07/03 16:14:25 by muabdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,7 +121,6 @@ typedef struct s_game
 	t_map					*map;
 
 	t_image					*collectable_tex;
-	t_image					*background_tex;
 	t_image					*exit_tex;
 	t_image					*wall_tex;
 

@@ -6,7 +6,7 @@
 /*   By: muabdi <muabdi@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 15:54:45 by muabdi            #+#    #+#             */
-/*   Updated: 2024/07/03 15:29:34 by muabdi           ###   ########.fr       */
+/*   Updated: 2024/07/03 16:12:47 by muabdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 // Other
 
-# define BIG_DOT "./assets/sprites/xpm/other/exit.xpm"
+# define BIG_DOT "./assets/sprites/xpm/other/big_dot.xpm"
 # define DOT "./assets/sprites/xpm/other/dot.xpm"
 
 // Map

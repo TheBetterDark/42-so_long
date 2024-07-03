@@ -6,7 +6,7 @@
 /*   By: muabdi <muabdi@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 19:41:50 by muabdi            #+#    #+#             */
-/*   Updated: 2024/07/03 15:50:04 by muabdi           ###   ########.fr       */
+/*   Updated: 2024/07/03 16:28:26 by muabdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,12 +73,21 @@ static void	render_sprites(t_game *game)
 static void	render_ui(t_game *game)
 {
 	char	*steps;
+	char	*num;
 
-	steps = ft_strjoin("Steps: ", ft_itoa(game->player->move_count));
-	if (!steps)
+	num = ft_itoa(game->player->move_count);
+	if (!num)
 		return ;
+	steps = ft_strjoin("Steps: ", num);
+	if (!steps)
+	{
+		free(num);
+		return ;
+	}
 	mlx_string_put(game->data->mlx_ptr, game->data->win_ptr,
 		((game->map->columns * TILE_SIZE) / 2) - 25,
 		(game->map->rows * TILE_SIZE) + 11,
 		create_rgb(255, 255, 255), steps);
+	free(num);
+	free(steps);
 }
