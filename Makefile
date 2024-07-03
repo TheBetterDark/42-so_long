@@ -6,7 +6,7 @@
 #    By: muabdi <muabdi@student.42london.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/12 23:59:26 by muabdi            #+#    #+#              #
-#    Updated: 2024/05/27 18:25:28 by muabdi           ###   ########.fr        #
+#    Updated: 2024/07/03 13:51:38 by muabdi           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -89,13 +89,13 @@ libs:
 leaks: all
 	@rm -f $(OUTPUT_LEAKS)
 	@mkdir -p $(LOG_DIR)
-	@valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --log-file=$(OUTPUT_LEAKS) ./$(NAME)
+	@valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --log-file=$(OUTPUT_LEAKS) ./$(NAME) ./assets/maps/pacman.ber
 	@cat $(OUTPUT_LEAKS)
 	@echo "${GREEN}$(NAME) ran successfully.${NC}"
 	
 test: all
 	@echo "${YELLOW}Launching $(NAME)...${NC}" 
-	@./$(NAME)
+	@./$(NAME) ./assets/maps/pacman.ber
 	@echo "${GREEN}$(NAME) ran successfully.${NC}"
 
 .PHONY: all clean fclean re libs leaks test
