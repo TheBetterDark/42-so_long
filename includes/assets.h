@@ -6,20 +6,17 @@
 /*   By: muabdi <muabdi@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 15:54:45 by muabdi            #+#    #+#             */
-/*   Updated: 2024/06/28 20:48:11 by muabdi           ###   ########.fr       */
+/*   Updated: 2024/07/03 15:29:34 by muabdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ASSETS_H
 # define ASSETS_H
 
-// Collectable
+// Other
 
-# define APPLE "./assets/sprites/xpm/collectables/apple.xpm"
-# define BIG_DOT "./assets/sprites/xpm/collectables/big_dot.xpm"
-# define CHERRY "./assets/sprites/xpm/collectables/cherry.xpm"
-# define DOT "./assets/sprites/xpm/collectables/dot.xpm"
-# define STRAWBERRY "./assets/sprites/xpm/collectables/strawberry.xpm"
+# define BIG_DOT "./assets/sprites/xpm/other/exit.xpm"
+# define DOT "./assets/sprites/xpm/other/dot.xpm"
 
 // Map
 

@@ -6,7 +6,7 @@
 /*   By: muabdi <muabdi@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 19:41:50 by muabdi            #+#    #+#             */
-/*   Updated: 2024/07/02 21:54:45 by muabdi           ###   ########.fr       */
+/*   Updated: 2024/07/03 15:50:04 by muabdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 static void	render_sprites(t_game *game);
 static void	render_static(t_game *game);
+static void	render_ui(t_game *game);
 
 int	render_loop(t_game *game)
 {
@@ -28,6 +29,7 @@ int	render_loop(t_game *game)
 	player_move(game);
 	render_static(game);
 	render_sprites(game);
+	render_ui(game);
 	frame_count = 0;
 	return (0);
 }
@@ -66,4 +68,17 @@ static void	render_sprites(t_game *game)
 	mlx_put_image_to_window(game->data->mlx_ptr, game->data->win_ptr,
 		game->player->current_image->img_ptr, game->player->position.x,
 		game->player->position.y);
+}
+
+static void	render_ui(t_game *game)
+{
+	char	*steps;
+
+	steps = ft_strjoin("Steps: ", ft_itoa(game->player->move_count));
+	if (!steps)
+		return ;
+	mlx_string_put(game->data->mlx_ptr, game->data->win_ptr,
+		((game->map->columns * TILE_SIZE) / 2) - 25,
+		(game->map->rows * TILE_SIZE) + 11,
+		create_rgb(255, 255, 255), steps);
 }

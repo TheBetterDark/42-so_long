@@ -6,7 +6,7 @@
 /*   By: muabdi <muabdi@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 19:24:08 by muabdi            #+#    #+#             */
-/*   Updated: 2024/07/02 18:39:06 by muabdi           ###   ########.fr       */
+/*   Updated: 2024/07/03 15:41:09 by muabdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ t_game	*initalize_game(char *file_name)
 		handle_error(game, "Memory Allocation Failure");
 	game->map = map;
 	game->data = open_window(game->map->columns * TILE_SIZE,
-			game->map->rows * TILE_SIZE, "so_long", handle_error);
+			(game->map->rows * TILE_SIZE) + TILE_SIZE, "so_long", handle_error);
 	if (!game->data->mlx_ptr || !game->data->win_ptr)
 		handle_error(game, "Memory Allocation Failure");
 	game->collectable_tex = load_texture(game->data, DOT);

@@ -6,7 +6,7 @@
 /*   By: muabdi <muabdi@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 17:47:05 by muabdi            #+#    #+#             */
-/*   Updated: 2024/07/02 19:18:46 by muabdi           ###   ########.fr       */
+/*   Updated: 2024/07/03 14:48:40 by muabdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ typedef enum e_direction
 # define KEY_S 115
 # define KEY_D 100
 
-# define PLAYER_SPEED 4
+# define PLAYER_SPEED 2
 
 # define TILE_SIZE 16 // 64px
 
