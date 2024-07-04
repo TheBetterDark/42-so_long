@@ -6,20 +6,19 @@
 /*   By: muabdi <muabdi@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 18:16:35 by muabdi            #+#    #+#             */
-/*   Updated: 2024/07/02 19:18:59 by muabdi           ###   ########.fr       */
+/*   Updated: 2024/07/04 14:58:48 by muabdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/utils.h"
 
-t_data	*open_window(int width, int height, char *title, void *f)
+t_data	*open_window(int width, int height, char *title)
 {
 	t_data	*data;
 
 	data = malloc(sizeof(t_data));
 	if (!data)
 		return (NULL);
-	data->error_handler = f;
 	data->mlx_ptr = mlx_init();
 	if (!data->mlx_ptr)
 		return (close_window(data), NULL);

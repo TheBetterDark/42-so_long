@@ -6,7 +6,7 @@
 /*   By: muabdi <muabdi@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 16:55:45 by muabdi            #+#    #+#             */
-/*   Updated: 2024/07/03 15:54:06 by muabdi           ###   ########.fr       */
+/*   Updated: 2024/07/04 15:03:13 by muabdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,18 +102,13 @@ static t_map	*read_map(t_map *map, int fd)
 
 static bool	validate_map_grid(t_map *map)
 {
-	ft_printf("1");
 	if (!validate_map_borders(map))
 		return (false);
-	ft_printf("2");
 	if (!validate_map_components(map))
 		return (false);
-	ft_printf("3");
 	if (!validate_map_size(map))
 		return (false);
-	ft_printf("4");
 	if (!validate_map_path(map))
 		return (false);
-	ft_printf("5");
 	return (true);
 }

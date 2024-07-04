@@ -6,7 +6,7 @@
 /*   By: muabdi <muabdi@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 17:47:05 by muabdi            #+#    #+#             */
-/*   Updated: 2024/07/03 16:14:25 by muabdi           ###   ########.fr       */
+/*   Updated: 2024/07/04 17:18:33 by muabdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,14 +111,25 @@ typedef struct s_player
 
 	int						animation_step;
 	int						move_count;
-	bool					has_changed;
 }							t_player;
+
+typedef struct s_enemy
+{
+	t_image					*current_image;
+	t_vector2				position;
+	t_vector2				velocity;
+}							t_enemy;
 
 typedef struct s_game
 {
 	t_data					*data;
-	t_player				*player;
 	t_map					*map;
+
+	t_player				*player;
+	t_enemy					*blinky;
+	t_enemy					*clyde;
+	t_enemy					*inky;
+	t_enemy					*pinky;
 
 	t_image					*collectable_tex;
 	t_image					*exit_tex;
@@ -152,6 +163,9 @@ void				cleanup_sprites(t_player_sprites *sprites);
 void				cleanup_events(t_event **events);
 void				cleanup_player(t_player *player);
 void				cleanup_map(t_map *map);
+
+t_enemy				*create_enemy(t_game *game, t_vector2 spawn_pos,
+						char *tex_path);
 
 int					render_loop(t_game *game);
 

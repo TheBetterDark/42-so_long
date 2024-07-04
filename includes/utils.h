@@ -6,7 +6,7 @@
 /*   By: muabdi <muabdi@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 17:37:38 by muabdi            #+#    #+#             */
-/*   Updated: 2024/07/02 19:19:18 by muabdi           ###   ########.fr       */
+/*   Updated: 2024/07/04 15:00:20 by muabdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,13 +66,11 @@ typedef struct s_data
 	void	*win_ptr;
 	int		height;
 	int		width;
-
-	void	(*error_handler)(void *);
 }			t_data;
 
 // Function declarations
 
-t_data		*open_window(int width, int height, char *title, void *f);
+t_data		*open_window(int width, int height, char *title);
 int			close_window(t_data *data);
 
 t_image		*create_image(t_data *data, int w, int h);

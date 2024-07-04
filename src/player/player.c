@@ -6,7 +6,7 @@
 /*   By: muabdi <muabdi@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 15:49:47 by muabdi            #+#    #+#             */
-/*   Updated: 2024/07/03 15:44:00 by muabdi           ###   ########.fr       */
+/*   Updated: 2024/07/04 15:16:50 by muabdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ t_player	*create_player(t_game *game, t_vector2 spawn_pos)
 	player->velocity = (t_vector2){0, 0};
 	player->animation_step = 1;
 	player->move_count = 0;
-	player->has_changed = true;
 	game->player = player;
 	return (player);
 }
@@ -81,7 +80,6 @@ void	animate_player(t_player *player, t_animation *animation)
 		player->current_image = animation->step_2;
 	else if (player->animation_step == 3)
 		player->current_image = animation->step_3;
-	player->has_changed = true;
 }
 
 void	handle_player_event(int key_code, t_game *game)

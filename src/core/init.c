@@ -6,7 +6,7 @@
 /*   By: muabdi <muabdi@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 19:24:08 by muabdi            #+#    #+#             */
-/*   Updated: 2024/07/03 16:14:28 by muabdi           ###   ########.fr       */
+/*   Updated: 2024/07/04 17:24:55 by muabdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,17 @@ t_game	*initalize_game(char *file_name)
 		handle_error(game, "Memory Allocation Failure");
 	game->map = map;
 	game->data = open_window(game->map->columns * TILE_SIZE,
-			(game->map->rows * TILE_SIZE) + TILE_SIZE, "so_long", handle_error);
+			(game->map->rows * TILE_SIZE) + TILE_SIZE, "so_long");
 	if (!game->data->mlx_ptr || !game->data->win_ptr)
 		handle_error(game, "Memory Allocation Failure");
 	game->collectable_tex = load_texture(game->data, DOT);
 	game->exit_tex = load_texture(game->data, BIG_DOT);
 	game->wall_tex = load_texture(game->data, MAP_WALL);
 	game->player = create_player(game, map->spawn_pos);
+	game->blinky = create_enemy(game, (t_vector2){1, 1}, BLINKY);
+	game->clyde = create_enemy(game, (t_vector2){2, 1}, CLYDE);
+	game->inky = create_enemy(game, (t_vector2){3, 1}, INKY);
+	game->pinky = create_enemy(game, (t_vector2){4, 1}, PINKY);
 	game->stop_render = false;
 	return (game);
 }
