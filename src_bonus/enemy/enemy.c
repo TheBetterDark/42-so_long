@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: muabdi <muabdi@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/04 15:55:27 by muabdi            #+#    #+#             */
-/*   Updated: 2024/07/04 17:17:34 by muabdi           ###   ########.fr       */
+/*   Created: 2024/07/07 21:19:51 by muabdi            #+#    #+#             */
+/*   Updated: 2024/07/07 21:41:41 by muabdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,4 +24,12 @@ t_enemy	*create_enemy(t_game *game, t_vector2 spawn_pos, char *tex_path)
 		* TILE_SIZE};
 	enemy->velocity = (t_vector2){0, 0};
 	return (enemy);
+}
+
+void	cleanup_enemy(t_enemy *enemy)
+{
+	if (!enemy)
+		return ;
+	clear_image(enemy->current_image);
+	free(enemy);
 }

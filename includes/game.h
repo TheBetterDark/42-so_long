@@ -6,7 +6,7 @@
 /*   By: muabdi <muabdi@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 17:47:05 by muabdi            #+#    #+#             */
-/*   Updated: 2024/07/07 18:39:05 by muabdi           ###   ########.fr       */
+/*   Updated: 2024/07/07 23:04:07 by muabdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,9 @@ typedef enum e_direction
 # define PLAYER_SPEED 2
 
 # define TILE_SIZE 16 // 64px
+
+# define DBL_MAX 1.7976931348623157E+308
+# define FIXED_DELTA_TIME 0.0167 // 60 FPS
 
 // Struct declarations
 
@@ -166,6 +169,10 @@ void				cleanup_map(t_map *map);
 
 t_enemy				*create_enemy(t_game *game, t_vector2 spawn_pos,
 						char *tex_path);
+void				enemy_move(t_game *game);
+bool				check_enemy_collisions(t_game *game, t_enemy *enemy,
+						t_vector2 position);
+void				cleanup_enemy(t_enemy *enemy);
 
 int					render_loop(t_game *game);
 

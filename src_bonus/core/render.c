@@ -6,11 +6,12 @@
 /*   By: muabdi <muabdi@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 19:41:50 by muabdi            #+#    #+#             */
-/*   Updated: 2024/07/07 18:25:43 by muabdi           ###   ########.fr       */
+/*   Updated: 2024/07/07 23:03:25 by muabdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/game.h"
+#include <time.h>
 
 static void	render_sprites(t_game *game);
 static void	render_static(t_game *game);
@@ -18,19 +19,25 @@ static void	render_ui(t_game *game);
 
 int	render_loop(t_game *game)
 {
-	static int	frame_count = 0;
+	static clock_t	last_fps_update = 0;
+	static double	delta_time;
+	clock_t			current_time;
 
 	if (game->stop_render)
 		return (1);
-	frame_count++;
-	if (frame_count < 5000)
-		return (1);
-	mlx_clear_window(game->data->mlx_ptr, game->data->win_ptr);
-	player_move(game);
-	render_static(game);
-	render_sprites(game);
-	render_ui(game);
-	frame_count = 0;
+	current_time = clock();
+	delta_time = (double)(current_time - last_fps_update)
+		/ CLOCKS_PER_SEC;
+	if (delta_time >= FIXED_DELTA_TIME)
+	{
+		last_fps_update = current_time;
+		mlx_clear_window(game->data->mlx_ptr, game->data->win_ptr);
+		player_move(game);
+		enemy_move(game);
+		render_static(game);
+		render_sprites(game);
+		render_ui(game);
+	}
 	return (0);
 }
 
