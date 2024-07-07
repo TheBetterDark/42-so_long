@@ -13,6 +13,7 @@ so_long
 # Temp files
 *.swp
 bin
+bin_bonus
 .vscode
 test
 logs

@@ -6,7 +6,7 @@
 /*   By: muabdi <muabdi@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 15:37:51 by muabdi            #+#    #+#             */
-/*   Updated: 2024/07/01 18:12:07 by muabdi           ###   ########.fr       */
+/*   Updated: 2024/07/07 18:30:37 by muabdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ static void	player_move_up(t_game *game)
 		return ;
 	}
 	game->player->position.y -= PLAYER_SPEED;
-	animate_player(game->player, game->player->sprites->player_up);
 	game->player->move_count++;
 	ft_printf("Number of Moves: %d\n", game->player->move_count);
 }
@@ -57,7 +56,6 @@ static void	player_move_down(t_game *game)
 		return ;
 	}
 	game->player->position.y += PLAYER_SPEED;
-	animate_player(game->player, game->player->sprites->player_down);
 	game->player->move_count++;
 	ft_printf("Number of Moves: %d\n", game->player->move_count);
 }
@@ -72,7 +70,6 @@ static void	player_move_left(t_game *game)
 		return ;
 	}
 	game->player->position.x -= PLAYER_SPEED;
-	animate_player(game->player, game->player->sprites->player_left);
 	game->player->move_count++;
 	ft_printf("Number of Moves: %d\n", game->player->move_count);
 }
@@ -87,7 +84,6 @@ static void	player_move_right(t_game *game)
 		return ;
 	}
 	game->player->position.x += PLAYER_SPEED;
-	animate_player(game->player, game->player->sprites->player_right);
 	game->player->move_count++;
 	ft_printf("Number of Moves: %d\n", game->player->move_count);
 }

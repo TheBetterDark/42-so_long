@@ -6,7 +6,7 @@
 #    By: muabdi <muabdi@student.42london.com>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/12 23:59:26 by muabdi            #+#    #+#              #
-#    Updated: 2024/07/07 18:27:02 by muabdi           ###   ########.fr        #
+#    Updated: 2024/07/07 18:46:11 by muabdi           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -85,6 +85,7 @@ fclean:
 	@make clean -C $(MLX)
 	@make fclean -C $(LIBFT)
 	@rm -rf $(OBJ_DIR)
+	@rm -rf $(OBJ_BONUS_DIR)
 	@rm -f $(NAME)
 	@rm -rf $(LOG_DIR)
 	@echo "${GREEN}$(NAME) cleaned.${NC}"
