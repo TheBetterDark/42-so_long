@@ -6,7 +6,7 @@
 /*   By: muabdi <muabdi@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 19:41:50 by muabdi            #+#    #+#             */
-/*   Updated: 2024/07/07 18:03:11 by muabdi           ###   ########.fr       */
+/*   Updated: 2024/07/07 18:25:43 by muabdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 static void	render_sprites(t_game *game);
 static void	render_static(t_game *game);
+static void	render_ui(t_game *game);
 
 int	render_loop(t_game *game)
 {
@@ -28,6 +29,7 @@ int	render_loop(t_game *game)
 	player_move(game);
 	render_static(game);
 	render_sprites(game);
+	render_ui(game);
 	frame_count = 0;
 	return (0);
 }
@@ -66,4 +68,38 @@ static void	render_sprites(t_game *game)
 	mlx_put_image_to_window(game->data->mlx_ptr, game->data->win_ptr,
 		game->player->current_image->img_ptr, game->player->position.x,
 		game->player->position.y);
+	mlx_put_image_to_window(game->data->mlx_ptr, game->data->win_ptr,
+		game->blinky->current_image->img_ptr, game->blinky->position.x,
+		game->blinky->position.y);
+	//mlx_put_image_to_window(game->data->mlx_ptr, game->data->win_ptr,
+	//	game->clyde->current_image->img_ptr, game->clyde->position.x,
+	//	game->clyde->position.y);
+	//mlx_put_image_to_window(game->data->mlx_ptr, game->data->win_ptr,
+	//	game->inky->current_image->img_ptr, game->inky->position.x,
+	//	game->blinky->position.y);
+	//mlx_put_image_to_window(game->data->mlx_ptr, game->data->win_ptr,
+	//	game->pinky->current_image->img_ptr, game->pinky->position.x,
+	//	game->pinky->position.y);
+}
+
+static void	render_ui(t_game *game)
+{
+	char	*steps;
+	char	*num;
+
+	num = ft_itoa(game->player->move_count);
+	if (!num)
+		return ;
+	steps = ft_strjoin("Steps: ", num);
+	if (!steps)
+	{
+		free(num);
+		return ;
+	}
+	mlx_string_put(game->data->mlx_ptr, game->data->win_ptr,
+		((game->map->columns * TILE_SIZE) / 2) - 25,
+		(game->map->rows * TILE_SIZE) + 11,
+		create_rgb(255, 255, 255), steps);
+	free(num);
+	free(steps);
 }
