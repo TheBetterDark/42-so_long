@@ -6,7 +6,7 @@
 /*   By: muabdi <muabdi@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 17:48:23 by muabdi            #+#    #+#             */
-/*   Updated: 2024/07/03 15:55:00 by muabdi           ###   ########.fr       */
+/*   Updated: 2024/07/08 12:45:49 by muabdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,8 @@ bool	validate_map_borders(t_map *map)
 	return (true);
 }
 
-bool	validate_map_components(t_map *map)
+bool	validate_map_components(t_map *map, t_vector2 pos)
 {
-	t_vector2	pos;
-
 	pos.y = 0;
 	while (pos.y < map->rows)
 	{
@@ -53,8 +51,12 @@ bool	validate_map_components(t_map *map)
 				map->spawn_count++;
 			else if (map->grid[pos.y][pos.x] == EXIT)
 				map->exit_count++;
-			else if (map->grid[pos.y][pos.x] != WALL
-					&& map->grid[pos.y][pos.x] != EMPTY)
+			else if (map->grid[pos.y][pos.x] != MAP_BLINKY
+				&& map->grid[pos.y][pos.x] != MAP_CLYDE
+				&& map->grid[pos.y][pos.x] != MAP_INKY
+				&& map->grid[pos.y][pos.x] != MAP_PINKY
+				&& map->grid[pos.y][pos.x] != WALL
+				&& map->grid[pos.y][pos.x] != EMPTY)
 				return (false);
 			pos.x++;
 		}
@@ -103,9 +105,17 @@ static t_map	*find_start_end(t_map *map)
 		while (pos.x < map->columns)
 		{
 			if (map->grid[pos.y][pos.x] == SPAWN)
-				map->spawn_pos = (t_vector2){pos.x, pos.y};
-			if (map->grid[pos.y][pos.x] == EXIT)
-				map->exit_pos = (t_vector2){pos.x, pos.y};
+				map->spawn_pos = pos;
+			else if (map->grid[pos.y][pos.x] == EXIT)
+				map->exit_pos = pos;
+			else if (map->grid[pos.y][pos.x] == MAP_BLINKY)
+				map->blinky_pos = pos;
+			else if (map->grid[pos.y][pos.x] == MAP_CLYDE)
+				map->clyde_pos = pos;
+			else if (map->grid[pos.y][pos.x] == MAP_INKY)
+				map->inky_pos = pos;
+			else if (map->grid[pos.y][pos.x] == MAP_PINKY)
+				map->pinky_pos = pos;
 			pos.x++;
 		}
 		pos.y++;

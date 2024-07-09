@@ -6,7 +6,7 @@
 /*   By: muabdi <muabdi@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 19:24:08 by muabdi            #+#    #+#             */
-/*   Updated: 2024/07/07 21:50:45 by muabdi           ###   ########.fr       */
+/*   Updated: 2024/07/08 15:04:37 by muabdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,8 @@ t_game	*initalize_game(char *file_name)
 	game->exit_tex = load_texture(game->data, BIG_DOT);
 	game->wall_tex = load_texture(game->data, MAP_WALL);
 	game->player = create_player(game, map->spawn_pos);
-	game->blinky = create_enemy(game, (t_vector2){1, 1}, BLINKY);
+	if (game->map->blinky_pos.x != -1 || game->map->blinky_pos.y != -1)
+		game->blinky = create_enemy(game, game->map->blinky_pos, BLINKY);
 	game->stop_render = false;
 	return (game);
 }

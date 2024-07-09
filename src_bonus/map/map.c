@@ -6,7 +6,7 @@
 /*   By: muabdi <muabdi@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 16:55:45 by muabdi            #+#    #+#             */
-/*   Updated: 2024/07/04 15:03:13 by muabdi           ###   ########.fr       */
+/*   Updated: 2024/07/08 12:49:04 by muabdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,10 @@ static t_map	*allocate_map_grid(int fd)
 	map->exit_count = 0;
 	map->spawn_pos = (t_vector2){-1, -1};
 	map->exit_pos = (t_vector2){-1, -1};
+	map->blinky_pos = (t_vector2){-1, -1};
+	map->clyde_pos = (t_vector2){-1, -1};
+	map->inky_pos = (t_vector2){-1, -1};
+	map->pinky_pos = (t_vector2){-1, -1};
 	return (map);
 }
 
@@ -104,7 +108,7 @@ static bool	validate_map_grid(t_map *map)
 {
 	if (!validate_map_borders(map))
 		return (false);
-	if (!validate_map_components(map))
+	if (!validate_map_components(map, (t_vector2){0, 0}))
 		return (false);
 	if (!validate_map_size(map))
 		return (false);

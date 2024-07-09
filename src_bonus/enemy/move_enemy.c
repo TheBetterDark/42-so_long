@@ -6,37 +6,25 @@
 /*   By: muabdi <muabdi@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/07 21:39:01 by muabdi            #+#    #+#             */
-/*   Updated: 2024/07/07 22:56:06 by muabdi           ###   ########.fr       */
+/*   Updated: 2024/07/08 15:06:18 by muabdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/game.h"
 
-static double		distance(int x1, int y1, int x2, int y2);
-static void			follow_player(t_enemy *enemy, t_game *game);
-static t_vector2	find_new_position(t_enemy *enemy, t_game *game,
+static t_vector2	find_new_position(t_game *game, t_enemy *enemy,
 						double smallest_distance, double dist);
+static void			follow_player(t_game *game, t_enemy *enemy);
 
 void	enemy_move(t_game *game)
 {
 	if (!game)
 		return ;
 	if (game->blinky)
-		follow_player(game->blinky, game);
-	if (game->clyde)
-		follow_player(game->clyde, game);
-	if (game->inky)
-		follow_player(game->inky, game);
-	if (game->pinky)
-		follow_player(game->pinky, game);
+		follow_player(game, game->blinky);
 }
 
-static double	distance(int x1, int y1, int x2, int y2)
-{
-	return (sqrt(pow(x2 - x1, 2) + pow(y2 - y1, 2)));
-}
-
-static t_vector2	find_new_position(t_enemy *enemy, t_game *game,
+static t_vector2	find_new_position(t_game *game, t_enemy *enemy,
 				double smallest_distance, double dist)
 {
 	t_vector2	new_position;
@@ -50,22 +38,23 @@ static t_vector2	find_new_position(t_enemy *enemy, t_game *game,
 		{
 			if (!check_enemy_collisions(game, enemy, current_position))
 			{
-				dist = distance(current_position.x, current_position.y,
-						game->player->position.x, game->player->position.y);
+				dist = sqrt(pow(game->player->position.x - current_position.x,
+							2) + pow(game->player->position.y
+							- current_position.y, 2));
 				if (dist < smallest_distance)
 				{
 					smallest_distance = dist;
 					new_position = current_position;
 				}
 			}
-			current_position.y ++;
+			current_position.y++;
 		}
-		current_position.x ++;
+		current_position.x++;
 	}
 	return (new_position);
 }
 
-static void	follow_player(t_enemy *enemy, t_game *game)
+static void	follow_player(t_game *game, t_enemy *enemy)
 {
-	enemy->position = find_new_position(enemy, game, DBL_MAX, 0.0);
+	enemy->position = find_new_position(game, enemy, DBL_MAX, 0.0);
 }

@@ -6,7 +6,7 @@
 /*   By: muabdi <muabdi@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 17:47:05 by muabdi            #+#    #+#             */
-/*   Updated: 2024/07/07 23:04:07 by muabdi           ###   ########.fr       */
+/*   Updated: 2024/07/08 13:50:12 by muabdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,11 @@ typedef enum e_map_elements
 	WALL = '1',
 	SPAWN = 'P',
 	EXIT = 'E',
-	COLLECTABLE = 'C'
+	COLLECTABLE = 'C',
+	MAP_BLINKY = '2',
+	MAP_CLYDE = '3',
+	MAP_INKY = '4',
+	MAP_PINKY = '5'
 }	t_map_elements;
 
 typedef enum e_direction
@@ -50,6 +54,12 @@ typedef enum e_direction
 	LEFT,
 	RIGHT
 }	t_direction;
+
+typedef enum e_enemy_state
+{
+	PATROL,
+	CHASE
+}			t_enemy_state;
 
 // Macro declarations
 
@@ -93,6 +103,10 @@ typedef struct s_map
 
 	t_vector2				spawn_pos;
 	t_vector2				exit_pos;
+	t_vector2				blinky_pos;
+	t_vector2				clyde_pos;
+	t_vector2				inky_pos;
+	t_vector2				pinky_pos;
 }							t_map;
 
 typedef struct s_player_sprites
@@ -121,6 +135,8 @@ typedef struct s_enemy
 	t_image					*current_image;
 	t_vector2				position;
 	t_vector2				velocity;
+
+	t_enemy_state			state;
 }							t_enemy;
 
 typedef struct s_game
@@ -149,7 +165,7 @@ int					handle_error(t_game *game, char *info);
 
 t_map				*create_map_grid(char *file_path);
 bool				validate_map_borders(t_map *map);
-bool				validate_map_components(t_map *map);
+bool				validate_map_components(t_map *map, t_vector2 pos);
 bool				validate_map_path(t_map *map);
 bool				validate_map_size(t_map *map);
 bool				find_path(t_map *map, t_vector2 start, t_vector2 end);

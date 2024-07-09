@@ -6,7 +6,7 @@
 /*   By: muabdi <muabdi@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 16:55:45 by muabdi            #+#    #+#             */
-/*   Updated: 2024/07/04 15:03:13 by muabdi           ###   ########.fr       */
+/*   Updated: 2024/07/08 15:07:31 by muabdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ static bool	validate_map_grid(t_map *map)
 {
 	if (!validate_map_borders(map))
 		return (false);
-	if (!validate_map_components(map))
+	if (!validate_map_components(map, (t_vector2){0, 0}))
 		return (false);
 	if (!validate_map_size(map))
 		return (false);

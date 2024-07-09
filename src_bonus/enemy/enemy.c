@@ -6,7 +6,7 @@
 /*   By: muabdi <muabdi@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/07 21:19:51 by muabdi            #+#    #+#             */
-/*   Updated: 2024/07/07 21:41:41 by muabdi           ###   ########.fr       */
+/*   Updated: 2024/07/08 13:40:11 by muabdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ t_enemy	*create_enemy(t_game *game, t_vector2 spawn_pos, char *tex_path)
 	enemy->position = (t_vector2){spawn_pos.x * TILE_SIZE, spawn_pos.y
 		* TILE_SIZE};
 	enemy->velocity = (t_vector2){0, 0};
+	enemy->state = PATROL;
 	return (enemy);
 }
 

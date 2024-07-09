@@ -6,7 +6,7 @@
 /*   By: muabdi <muabdi@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 19:41:50 by muabdi            #+#    #+#             */
-/*   Updated: 2024/07/07 23:03:25 by muabdi           ###   ########.fr       */
+/*   Updated: 2024/07/08 15:03:32 by muabdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,21 +72,14 @@ static void	render_static(t_game *game)
 
 static void	render_sprites(t_game *game)
 {
-	mlx_put_image_to_window(game->data->mlx_ptr, game->data->win_ptr,
-		game->player->current_image->img_ptr, game->player->position.x,
-		game->player->position.y);
-	mlx_put_image_to_window(game->data->mlx_ptr, game->data->win_ptr,
-		game->blinky->current_image->img_ptr, game->blinky->position.x,
-		game->blinky->position.y);
-	//mlx_put_image_to_window(game->data->mlx_ptr, game->data->win_ptr,
-	//	game->clyde->current_image->img_ptr, game->clyde->position.x,
-	//	game->clyde->position.y);
-	//mlx_put_image_to_window(game->data->mlx_ptr, game->data->win_ptr,
-	//	game->inky->current_image->img_ptr, game->inky->position.x,
-	//	game->blinky->position.y);
-	//mlx_put_image_to_window(game->data->mlx_ptr, game->data->win_ptr,
-	//	game->pinky->current_image->img_ptr, game->pinky->position.x,
-	//	game->pinky->position.y);
+	if (game->player)
+		mlx_put_image_to_window(game->data->mlx_ptr, game->data->win_ptr,
+			game->player->current_image->img_ptr, game->player->position.x,
+			game->player->position.y);
+	if (game->blinky)
+		mlx_put_image_to_window(game->data->mlx_ptr, game->data->win_ptr,
+			game->blinky->current_image->img_ptr, game->blinky->position.x,
+			game->blinky->position.y);
 }
 
 static void	render_ui(t_game *game)
