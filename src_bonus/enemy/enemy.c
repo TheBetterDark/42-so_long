@@ -6,11 +6,13 @@
 /*   By: muabdi <muabdi@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/07 21:19:51 by muabdi            #+#    #+#             */
-/*   Updated: 2024/07/08 13:40:11 by muabdi           ###   ########.fr       */
+/*   Updated: 2024/08/23 16:41:15 by muabdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/game.h"
+
+// TODO: Implement other enemies
 
 t_enemy	*create_enemy(t_game *game, t_vector2 spawn_pos, char *tex_path)
 {

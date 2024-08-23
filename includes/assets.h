@@ -6,7 +6,7 @@
 /*   By: muabdi <muabdi@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 15:54:45 by muabdi            #+#    #+#             */
-/*   Updated: 2024/07/03 16:12:47 by muabdi           ###   ########.fr       */
+/*   Updated: 2024/08/23 16:26:38 by muabdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,5 @@
 // Enemy
 
 # define BLINKY "./assets/sprites/xpm/ghosts/blinky.xpm"
-# define CLYDE "./assets/sprites/xpm/ghosts/clyde.xpm"
-# define INKY "./assets/sprites/xpm/ghosts/inky.xpm"
-# define PINKY "./assets/sprites/xpm/ghosts/pinky.xpm"
 
 #endif

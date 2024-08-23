@@ -6,7 +6,7 @@
 /*   By: muabdi <muabdi@student.42london.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/07 21:39:01 by muabdi            #+#    #+#             */
-/*   Updated: 2024/07/08 15:06:18 by muabdi           ###   ########.fr       */
+/*   Updated: 2024/08/23 16:41:29 by muabdi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,9 @@ void	enemy_move(t_game *game)
 	if (game->blinky)
 		follow_player(game, game->blinky);
 }
+
+// TODO: Stop enemy from moving diagonally
+// TODO: Improve path finding so it doesnt get stuck
 
 static t_vector2	find_new_position(t_game *game, t_enemy *enemy,
 				double smallest_distance, double dist)
